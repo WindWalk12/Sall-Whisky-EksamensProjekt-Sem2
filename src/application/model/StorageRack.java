@@ -22,6 +22,10 @@ public class StorageRack {
 
     private Map<String, Cask> shelfs = new HashMap<>();
 
+    public Map<String, Cask> getShelfs() {
+        return new HashMap<>(shelfs);
+    }
+
     public void putCask(Cask cask, int row, int col) {
         shelfs.put(row + "." + col, cask);
     }
@@ -32,10 +36,16 @@ public class StorageRack {
 
     // Methods
 
+    public String getId() {
+        return id;
+    }
+
+
     private void createShelfs(int row, int col) {
         for (int i = 1; i <= row; i++) {
             for (int j = 1; j <= col; j++) {
                 shelfs.put(i + "." + j, null);            }
         }
     }
+
 }
