@@ -8,12 +8,13 @@ public class StorageRack {
     // Simple attributes
 
     private String id;
-
+    private Warehouse warehouse;
 
     // Constructor
 
-    public StorageRack(String id, int row, int col) {
+    public StorageRack(String id, int row, int col, Warehouse warehouse) {
         this.id = id;
+        this.warehouse = warehouse;
         createShelfs(row, col);
     }
 

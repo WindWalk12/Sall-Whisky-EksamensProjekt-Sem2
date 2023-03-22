@@ -15,7 +15,7 @@ public class Warehouse {
     }
 
     public StorageRack createStorageRack(int row, int col) {
-        StorageRack sr = new StorageRack(name + "-" + storageRacks.size() + 1, row, col);
+        StorageRack sr = new StorageRack(name + "-" + storageRacks.size() + 1, row, col, this);
         storageRacks.add(sr);
         availableSpaces += row*col;
         return sr;
