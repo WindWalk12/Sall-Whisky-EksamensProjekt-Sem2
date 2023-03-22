@@ -41,14 +41,14 @@ public class StartWindow extends Application {
     private void initTabPane(TabPane tabPane) {
         tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 
-        Tab tabCaskPane = new Tab("Casks");
+        Tab tabCaskPane = new Tab("Fade");
         tabPane.getTabs().add(tabCaskPane);
 
         CaskPane caskPane = new CaskPane();
         tabCaskPane.setContent(caskPane);
         tabCaskPane.setOnSelectionChanged(event -> caskPane.updateList());
 
-        Tab tabWarehousePane = new Tab("Warehouse");
+        Tab tabWarehousePane = new Tab("Lager");
         tabPane.getTabs().add(tabWarehousePane);
 
         WarehousePane warehousePane = new WarehousePane();
