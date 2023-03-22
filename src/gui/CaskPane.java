@@ -43,14 +43,11 @@ public class CaskPane extends GridPane {
     // -------------------------------------------------------------------------
 
     private void selectedCaskChanged() {
-        this.updateView();
     }
 
     public void updateList() {
         lvwCasks.getItems().setAll(Controller.getCasks());
     }
-
-    private void updateView() {}
 
     private void createNewCaskAction() {
 
