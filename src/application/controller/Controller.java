@@ -9,6 +9,7 @@ import storage.Storage;
 import java.util.ArrayList;
 
 public class Controller {
+
     public static Warehouse createWarehouse(String name, String address){
         Warehouse warehouse = new Warehouse(name, address);
         Storage.addWarehouse(warehouse);
@@ -24,6 +25,7 @@ public class Controller {
         Storage.addCask(cask);
         return cask;
     }
+
 
     public static ArrayList<Cask> getCasks(){
         return Storage.getCasks();

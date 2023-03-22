@@ -70,7 +70,7 @@ public class WarehousePane extends GridPane {
 
     private void createStorageRackAction() {
 
-        CreateStorageRackWindow dia = new CreateStorageRackWindow("Opret reol");
+        CreateStorageRackWindow dia = new CreateStorageRackWindow("Opret reol", this.lvwWarehouses.getSelectionModel().getSelectedItem());
         dia.showAndWait();
         updateList();
 
