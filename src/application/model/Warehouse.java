@@ -40,4 +40,9 @@ public class Warehouse {
     public String getAddress() {
         return address;
     }
+
+    @Override
+    public String toString(){
+        return this.name + " " + this.address + " Free spaces: " + this.availableSpaces;
+    }
 }

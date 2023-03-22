@@ -33,6 +33,10 @@ public class Controller {
         storageRack.putCask(cask,row,col);
     }
 
+    public static void removeCask(StorageRack storageRack, int row, int col, Cask cask){
+        storageRack.removeCask(cask,row,col);
+    }
+
     public static void initStorage(){
         Warehouse WH1 = Controller.createWarehouse("WH1","Morbærhaven 30");
         Warehouse WH2 = Controller.createWarehouse("WH2", "Mortensmindevej 21");
@@ -44,6 +48,8 @@ public class Controller {
         StorageRack SR1 = WH1.createStorageRack(3,3);
         StorageRack SR2 = WH2.createStorageRack(6,5);
 
+        putCask(SR1,2,2,C1);
+        removeCask(SR1,2,2,C1);
         putCask(SR1,2,2,C1);
 
         System.out.println(SR1.getShelfs().containsValue(C1));

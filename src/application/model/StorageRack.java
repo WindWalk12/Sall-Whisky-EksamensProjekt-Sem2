@@ -29,11 +29,13 @@ public class StorageRack {
     public void putCask(Cask cask, int row, int col) {
         shelfs.put(row + "." + col, cask);
         cask.setStorageRack(this);
+        warehouse.reduceSpace();
     }
 
     public void removeCask(Cask cask, int row, int col) {
         shelfs.put(row + "." + col, null);
         cask.setStorageRack(null);
+        warehouse.increaseSpace();
     }
 
     // Simple methods
