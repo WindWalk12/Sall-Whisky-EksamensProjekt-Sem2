@@ -48,7 +48,7 @@ public class StartWindow extends Application {
         tabCaskPane.setContent(caskPane);
         tabCaskPane.setOnSelectionChanged(event -> caskPane.updateList());
 
-        Tab tabWarehousePane = new Tab("Casks");
+        Tab tabWarehousePane = new Tab("Warehouse");
         tabPane.getTabs().add(tabWarehousePane);
 
         WarehousePane warehousePane = new WarehousePane();

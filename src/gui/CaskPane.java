@@ -3,6 +3,7 @@ package gui;
 import application.controller.Controller;
 import application.model.Cask;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
@@ -26,6 +27,17 @@ public class CaskPane extends GridPane {
         lvwCasks.getItems().setAll(Controller.getCasks());
 
 
+        // Buttons
+
+        Button btnCreateNewCask = new Button("Opret nyt fad");
+        this.add(btnCreateNewCask, 1, 1);
+        btnCreateNewCask.setOnAction(event -> this.createNewCaskAction());
+
+        Button btnMoveCask = new Button("Flyt fad til lager");
+        this.add(btnMoveCask, 1,  2);
+        btnMoveCask.setOnAction(event -> this.moveCaskAction());
+
+
     }
 
     // -------------------------------------------------------------------------
@@ -39,4 +51,11 @@ public class CaskPane extends GridPane {
     }
 
     private void updateView() {}
+
+    private void createNewCaskAction() {
+
+    }
+    private void moveCaskAction() {
+
+    }
 }

@@ -5,6 +5,7 @@ import application.controller.Controller;
 import application.model.Cask;
 import application.model.Warehouse;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
@@ -26,6 +27,17 @@ public class WarehousePane extends GridPane {
         lvwWarehouses.setPrefWidth(200);
         lvwWarehouses.setPrefHeight(300);
         lvwWarehouses.getItems().setAll(Controller.getWarehouses());
+
+
+        // Buttons
+
+        Button btnCreateWarehouse = new Button("Opret nyt lager");
+        this.add(btnCreateWarehouse, 1, 1);
+        btnCreateWarehouse.setOnAction(event -> this.createWarehouseAction());
+
+        Button btnCreateStorageRack = new Button("Opret ny reol");
+        this.add(btnCreateStorageRack, 1, 2);
+        btnCreateStorageRack.setOnAction(event -> this.createStorageRackAction());
     }
 
     // -------------------------------------------------------------------------
@@ -39,4 +51,12 @@ public class WarehousePane extends GridPane {
     }
 
     private void updateView() {}
+
+    private void createWarehouseAction() {
+
+    }
+
+    private void createStorageRackAction() {
+
+    }
 }
