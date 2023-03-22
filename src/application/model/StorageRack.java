@@ -27,6 +27,7 @@ public class StorageRack {
 
     public void putCask(Cask cask, int row, int col) {
         shelfs.put(row + "." + col, cask);
+        cask.setStorageRack(this);
     }
 
     public void removeCask(int row, int col) {
