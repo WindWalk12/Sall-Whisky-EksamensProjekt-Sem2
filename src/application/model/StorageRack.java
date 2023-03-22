@@ -42,6 +42,9 @@ public class StorageRack {
         return id;
     }
 
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
     // Methods
 
     private void createShelfs(int row, int col) {
