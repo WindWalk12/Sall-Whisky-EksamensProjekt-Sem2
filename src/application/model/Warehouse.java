@@ -14,8 +14,8 @@ public class Warehouse {
         this.availableSpaces = 0;
     }
 
-    public void createStorageRack(String id, int width, int height) {
-        StorageRack sr = new StorageRack(id, width, height);
+    public void createStorageRack(int width, int height) {
+        StorageRack sr = new StorageRack(name + "-" + storageRacks.size() + 1, width, height);
         storageRacks.add(sr);
         availableSpaces += width*height;
     }
