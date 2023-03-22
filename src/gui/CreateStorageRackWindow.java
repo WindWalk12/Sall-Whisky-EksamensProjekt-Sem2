@@ -32,7 +32,7 @@ public class CreateStorageRackWindow extends Stage {
         pane.setVgap(10);
         pane.setGridLinesVisible(false);
 
-        // Textfields and labels where information about the StorageRack can be iniserted
+        // Textfields and labels where information about the StorageRack can be inserted
 
         Label lblId = new Label("ID: ");
         pane.add(lblId, 1, 1);
