@@ -70,5 +70,9 @@ public class WarehousePane extends GridPane {
 
     private void createStorageRackAction() {
 
+        CreateStorageRackWindow dia = new CreateStorageRackWindow("Opret reol");
+        dia.showAndWait();
+        updateList();
+
     }
 }
