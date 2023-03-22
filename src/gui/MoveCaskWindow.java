@@ -1,4 +1,6 @@
 package gui;
 
-public class MoveCaskWindow {
+import javafx.stage.Stage;
+
+public class MoveCaskWindow extends Stage {
 }

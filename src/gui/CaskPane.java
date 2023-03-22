@@ -50,8 +50,9 @@ public class CaskPane extends GridPane {
     }
 
     private void createNewCaskAction() {
-
-
+        CreateCaskWindow dia = new CreateCaskWindow("Opret nyt fad");
+        dia.showAndWait();
+        updateList();
 
     }
     private void moveCaskAction() {
