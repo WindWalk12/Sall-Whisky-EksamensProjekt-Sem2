@@ -33,12 +33,13 @@ public class StorageRack {
         shelfs.put(row + "." + col, null);
     }
 
-    // Methods
+    // Simple methods
 
     public String getId() {
         return id;
     }
 
+    // Methods
 
     private void createShelfs(int row, int col) {
         for (int i = 1; i <= row; i++) {
