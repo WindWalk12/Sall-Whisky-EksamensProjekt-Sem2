@@ -14,10 +14,11 @@ public class Warehouse {
         this.availableSpaces = 0;
     }
 
-    public void createStorageRack(int width, int height) {
-        StorageRack sr = new StorageRack(name + "-" + storageRacks.size() + 1, width, height);
+    public StorageRack createStorageRack(int row, int col) {
+        StorageRack sr = new StorageRack(name + "-" + storageRacks.size() + 1, row, col);
         storageRacks.add(sr);
-        availableSpaces += width*height;
+        availableSpaces += row*col;
+        return sr;
     }
 
     public void removeStorageRack(StorageRack s) {
@@ -38,5 +39,10 @@ public class Warehouse {
 
     public String getAddress() {
         return address;
+    }
+
+    @Override
+    public String toString(){
+        return this.name + " " + this.address + " Space: " + this.availableSpaces;
     }
 }

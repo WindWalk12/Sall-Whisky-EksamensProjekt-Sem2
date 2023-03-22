@@ -51,4 +51,9 @@ public class Cask {
     public void setStorageRack(StorageRack storageRack) {
         this.storageRack = storageRack;
     }
+
+    @Override
+    public String toString(){
+        return this.id + " " + this.caskType.toString() + " " + this.storageRack + " " + this.volume;
+    }
 }

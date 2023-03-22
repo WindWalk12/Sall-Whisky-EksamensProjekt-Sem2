@@ -30,8 +30,9 @@ public class StorageRack {
         cask.setStorageRack(this);
     }
 
-    public void removeCask(int row, int col) {
+    public void removeCask(Cask cask, int row, int col) {
         shelfs.put(row + "." + col, null);
+        cask.setStorageRack(null);
     }
 
     // Simple methods
@@ -47,6 +48,11 @@ public class StorageRack {
             for (int j = 1; j <= col; j++) {
                 shelfs.put(i + "." + j, null);            }
         }
+    }
+
+    @Override
+    public String toString(){
+        return this.id;
     }
 
 }
