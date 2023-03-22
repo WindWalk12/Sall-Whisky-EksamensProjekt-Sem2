@@ -64,12 +64,17 @@ public class WarehousePane extends GridPane {
         lvwWarehouses.getItems().setAll(Controller.getWarehouses());
     }
 
+    // -------------------------------------------------------------------------
+
+
     private void createWarehouseAction() {
+        CreateWarehouseWindow dia = new CreateWarehouseWindow("Opret nyt lager");
+        dia.showAndWait();
+        updateList();
 
     }
 
     private void createStorageRackAction() {
-
         CreateStorageRackWindow dia = new CreateStorageRackWindow("Opret reol", this.lvwWarehouses.getSelectionModel().getSelectedItem());
         dia.showAndWait();
         updateList();

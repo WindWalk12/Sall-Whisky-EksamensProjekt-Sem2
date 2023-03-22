@@ -85,7 +85,7 @@ public class CreateStorageRackWindow extends Stage {
         int row = Integer.parseInt(txfRow.getText().trim());
         int col = Integer.parseInt(txfCol.getText().trim());
 
-        //Controller.createStorageRack
+        //Controller.createStorageRack - TODO
     }
     private void exitAction() {
         this.hide();
