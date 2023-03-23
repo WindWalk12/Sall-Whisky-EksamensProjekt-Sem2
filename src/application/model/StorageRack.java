@@ -64,12 +64,7 @@ public class StorageRack {
     private void createShelfs(int row, int col) {
         for (int i = 1; i <= row; i++) {
             for (int j = 1; j <= col; j++) {
-                if(j < 10) {
-                shelfs.put(i + ".0" + j, null);
-                } else {
-                    shelfs.put(i + "." + j, null);
-
-                }
+                shelfs.put(i + "." + j, null);
             }
         }
     }
