@@ -55,10 +55,22 @@ public class StorageRack {
     }
     // Methods
 
+    /**
+     *
+     * @param row < 100
+     * @param col < 100
+     */
+
     private void createShelfs(int row, int col) {
         for (int i = 1; i <= row; i++) {
             for (int j = 1; j <= col; j++) {
-                shelfs.put(i + "." + j, null);            }
+                if(j < 10) {
+                shelfs.put(i + ".0" + j, null);
+                } else {
+                    shelfs.put(i + "." + j, null);
+
+                }
+            }
         }
     }
 

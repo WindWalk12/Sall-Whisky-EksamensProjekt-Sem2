@@ -3,6 +3,7 @@ package gui;
 import application.controller.Controller;
 import application.model.Cask;
 import javafx.beans.binding.Bindings;
+import javafx.collections.transformation.SortedList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +27,7 @@ public class CaskPane extends GridPane {
         lvwCasks.setPrefWidth(200);
         lvwCasks.setPrefHeight(300);
         lvwCasks.getItems().setAll(Controller.getCasks());
+
 
 
         // Buttons

@@ -82,7 +82,6 @@ public class MoveCaskWindow extends Stage {
         pane.add(lvwShelfs, 2, 2);
 
 
-
         // Buttons which makes it possible to save or exit
 
         Button btnMove = new Button("Flyt til lager");
