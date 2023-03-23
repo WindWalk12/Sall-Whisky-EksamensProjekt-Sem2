@@ -22,14 +22,10 @@ public class StorageRack {
 
     // Link attribute 0..1 - > 0..* to Cask
 
-    private Map<String, Cask> shelfs = new HashMap<>();
+    private Map<String, Cask> shelfs = new LinkedHashMap<>();
 
     public Map<String, Cask> getShelfs() {
-
-        Map<String, Cask> treeMap = new TreeMap<>(shelfs);
-        Map<String, Cask> sortedMap = new LinkedHashMap<>(treeMap);
-
-        return sortedMap;
+        return new LinkedHashMap<>(shelfs);
     }
 
     public void putCask(Cask cask, int row, int col) {
