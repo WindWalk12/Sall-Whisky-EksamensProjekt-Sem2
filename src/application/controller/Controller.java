@@ -20,8 +20,8 @@ public class Controller {
         return Storage.getWarehouses();
     }
 
-    public static Cask createCask(String id, String countryOfOrigin, String supplier, double volume, CaskType caskType){
-        Cask cask = new Cask(id, countryOfOrigin,supplier,volume,caskType);
+    public static Cask createCask(String countryOfOrigin, String supplier, double volume, CaskType caskType){
+        Cask cask = new Cask(countryOfOrigin,supplier,volume,caskType);
         Storage.addCask(cask);
         return cask;
     }
@@ -47,9 +47,9 @@ public class Controller {
         Warehouse WH1 = Controller.createWarehouse("WH1","Morbærhaven 30");
         Warehouse WH2 = Controller.createWarehouse("WH2", "Mortensmindevej 21");
 
-        Cask C1 = Controller.createCask("01","Rusland","Destilleri",10,CaskType.BOURBON);
-        Cask C2 = Controller.createCask("02","Spanien","Destilleri 2",40,CaskType.SHERRY);
-        Cask C3 = Controller.createCask("03", "Portugal","Desilleri 609",15,CaskType.REDWINE);
+        Cask C1 = Controller.createCask("Rusland","Destilleri",10,CaskType.BOURBON);
+        Cask C2 = Controller.createCask("Spanien","Destilleri 2",40,CaskType.SHERRY);
+        Cask C3 = Controller.createCask("Portugal","Desilleri 609",15,CaskType.REDWINE);
 
         StorageRack SR1 = WH1.createStorageRack(3,3);
         StorageRack SR2 = WH2.createStorageRack(6,5);

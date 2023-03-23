@@ -7,9 +7,11 @@ public class Cask {
     private String supplier;
     private double volume;
     private StorageRack storageRack;
+    private static int caskCounter = 0;
 
-    public Cask(String id, String countryOfOrigin, String supplier, double volume, CaskType caskType) {
-        this.id = id;
+    public Cask(String countryOfOrigin, String supplier, double volume, CaskType caskType) {
+        caskCounter ++;
+        this.id = String.valueOf(caskCounter);
         this.countryOfOrigin = countryOfOrigin;
         this.supplier = supplier;
         this.volume = volume;
