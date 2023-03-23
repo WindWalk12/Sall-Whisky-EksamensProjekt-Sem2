@@ -1,7 +1,9 @@
 package application.model;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class StorageRack {
 
@@ -23,7 +25,11 @@ public class StorageRack {
     private Map<String, Cask> shelfs = new HashMap<>();
 
     public Map<String, Cask> getShelfs() {
-        return new HashMap<>(shelfs);
+
+        Map<String, Cask> treeMap = new TreeMap<>(shelfs);
+        Map<String, Cask> sortedMap = new LinkedHashMap<>(treeMap);
+
+        return sortedMap;
     }
 
     public void putCask(Cask cask, int row, int col) {
