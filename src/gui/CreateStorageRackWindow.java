@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -30,6 +31,7 @@ public class CreateStorageRackWindow extends Stage {
 
     private Warehouse warehouse;
     private TextField txfRow, txfCol, txfSelectedWarehouse;
+    private Label lblError = new Label();
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -72,14 +74,24 @@ public class CreateStorageRackWindow extends Stage {
         pane.add(btnExit, 2, 4);
         btnExit.setOnAction(event -> this.exitAction());
 
+        lblError.setTextFill(Color.RED);
+        pane.add(lblError, 1, 5, 2, 1);
+
     }
     private void saveAction() {
+        if (!txfRow.getText().isEmpty() && !txfCol.getText().isEmpty()) {
+            try {
+                int row = Integer.parseInt(txfRow.getText().trim());
+                int col = Integer.parseInt(txfCol.getText().trim());
 
-        int row = Integer.parseInt(txfRow.getText().trim());
-        int col = Integer.parseInt(txfCol.getText().trim());
-
-        Controller.createStorageRack(warehouse, row, col);
-        this.hide();
+                Controller.createStorageRack(warehouse, row, col);
+                this.hide();
+            } catch (IllegalArgumentException e) {
+                lblError.setText(e.getMessage());
+            }
+        } else {
+            lblError.setText("Hylder og pladser kan ikke være tom");
+        }
     }
     private void exitAction() {
         this.hide();

@@ -21,9 +21,13 @@ public class Controller {
     }
 
     public static Cask createCask(String countryOfOrigin, String supplier, double volume, CaskType caskType){
-        Cask cask = new Cask(countryOfOrigin,supplier,volume,caskType);
-        Storage.addCask(cask);
-        return cask;
+        if (volume < 1) {
+            throw new IllegalArgumentException("Volume skal være 1 eller højere");
+        } else {
+            Cask cask = new Cask(countryOfOrigin, supplier, volume, caskType);
+            Storage.addCask(cask);
+            return cask;
+        }
     }
 
 
@@ -32,15 +36,27 @@ public class Controller {
     }
 
     public static void putCask(StorageRack storageRack, int row, int col, Cask cask){
-        storageRack.putCask(cask,row,col);
+        if (row < 1 || col < 1) {
+            throw new IllegalArgumentException("Hylder og pladser skal være over 0");
+        } else {
+            storageRack.putCask(cask,row,col);
+        }
     }
 
     public static void removeCask(StorageRack storageRack, int row, int col, Cask cask){
-        storageRack.removeCask(cask,row,col);
+        if (row < 1 || col < 1) {
+            throw new IllegalArgumentException("Hylder og pladser skal være over 0");
+        } else {
+            storageRack.removeCask(cask, row, col);
+        }
     }
 
     public static StorageRack createStorageRack(Warehouse warehouse, int row, int col) {
-        return warehouse.createStorageRack(row, col);
+        if (row < 1 || col < 1) {
+            throw new IllegalArgumentException("Hylder og pladser skal være over 0");
+        } else {
+            return warehouse.createStorageRack(row, col);
+        }
     }
 
     public static void initStorage(){

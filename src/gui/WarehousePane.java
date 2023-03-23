@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class WarehousePane extends GridPane {
     private ListView<Warehouse> lvwWarehouses;
