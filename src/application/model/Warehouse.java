@@ -47,6 +47,6 @@ public class Warehouse {
 
     @Override
     public String toString(){
-        return this.name + " " + this.address + " Free spaces: " + this.availableSpaces;
+        return this.name + " " + this.address + " Ledige pladser: " + this.availableSpaces;
     }
 }

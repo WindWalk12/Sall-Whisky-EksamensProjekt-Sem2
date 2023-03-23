@@ -5,9 +5,12 @@ import application.model.Cask;
 import application.model.StorageRack;
 import application.model.Warehouse;
 import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,6 +18,7 @@ import javafx.stage.StageStyle;
 import storage.Storage;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class MoveCaskWindow extends Stage {
 
