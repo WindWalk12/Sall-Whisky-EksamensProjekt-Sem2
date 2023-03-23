@@ -12,12 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import storage.Storage;
 
-import java.util.HashMap;
+import java.util.*;
 import java.util.Map;
 
 public class MoveCaskWindow extends Stage {
@@ -42,7 +43,8 @@ public class MoveCaskWindow extends Stage {
 
     private ComboBox<StorageRack> cbxStorageRacks;
 
-    private ListView<HashMap<String, Cask>> lvwShelfs;
+    private ListView<String> lvwShelfs;
+    private Label lblError = new Label();
 
 
     private void initContent(GridPane pane) {
@@ -90,11 +92,29 @@ public class MoveCaskWindow extends Stage {
         Button btnExit = new Button("Luk");
         pane.add(btnExit, 2, 4);
         btnExit.setOnAction(event -> this.exitAction());
+
+        lblError.setTextFill(Color.RED);
+        pane.add(lblError, 1, 5, 2, 1);
     }
 
     private void moveAction() {
-        //Controller.putCask();
-        this.hide();
+        Warehouse warehouse = cbxWarehouse.getSelectionModel().getSelectedItem();
+        StorageRack storageRack = cbxStorageRacks.getSelectionModel().getSelectedItem();
+        String shelf = lvwShelfs.getSelectionModel().getSelectedItem();
+        if (warehouse != null && storageRack != null && shelf != null) {
+            String[] splitShelf = shelf.split(" ");
+            if (splitShelf[1].equals("Ledig")) {
+                String[] key = splitShelf[0].split("\\.");
+                String row = key[0];
+                String col = key[1];
+                Controller.putCask(storageRack, Integer.parseInt(row), Integer.parseInt(col), cask);
+                this.hide();
+            } else {
+                lblError.setText("Den valgte hylde er ikke ledig");
+            }
+        } else {
+            lblError.setText("Der er ikke valgt noget lager, reol eller hylde");
+        }
     }
 
     private void exitAction() {
@@ -113,7 +133,17 @@ public class MoveCaskWindow extends Stage {
     private void selectedStorageRackChanged() {
         StorageRack storageRack = cbxStorageRacks.getSelectionModel().getSelectedItem();
         if (storageRack != null) {
-            lvwShelfs.getItems().setAll((HashMap<String, Cask>) storageRack.getShelfs());
+            ArrayList<String> listOfKeys = new ArrayList<>(storageRack.getShelfs().keySet());
+            ArrayList<Cask> listOfValues = new ArrayList<>(storageRack.getShelfs().values());
+            ArrayList<String> shelfs = new ArrayList<>();
+            for (int i = 0; i < listOfKeys.size(); i++) {
+                if (listOfValues.get(i) == null) {
+                    shelfs.add(listOfKeys.get(i) + " Ledig");
+                } else {
+                    shelfs.add(listOfKeys.get(i) + " " + listOfValues.get(i));
+                }
+            }
+            lvwShelfs.getItems().setAll(shelfs);
         } else {
             lvwShelfs.getItems().clear();
         }

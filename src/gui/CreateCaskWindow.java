@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -33,6 +34,7 @@ public class CreateCaskWindow extends Stage {
     private ComboBox cbxCaskType;
 
     private Button btnOK, btnCancel;
+    private Label lblError = new Label();
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -71,6 +73,9 @@ public class CreateCaskWindow extends Stage {
         btnCancel = new Button("Annullere");
         pane.add(btnCancel,1,4);
         btnCancel.setOnAction(event -> this.cancelAction());
+
+        lblError.setTextFill(Color.RED);
+        pane.add(lblError, 0, 5, 2, 1);
     }
 
     private void cancelAction() {
@@ -78,8 +83,16 @@ public class CreateCaskWindow extends Stage {
     }
 
     private void okAction() {
-        CaskType caskType = (CaskType) cbxCaskType.getSelectionModel().getSelectedItem();
-        Controller.createCask(this.txfCountryOfOrigin.getText(), this.txfSupplier.getText(), Double.parseDouble(this.txfVolume.getText()), caskType);
-        this.hide();
+        if (!txfCountryOfOrigin.getText().isEmpty() && !txfSupplier.getText().isEmpty() && !txfVolume.getText().isEmpty()) {
+            try {
+                CaskType caskType = (CaskType) cbxCaskType.getSelectionModel().getSelectedItem();
+                Controller.createCask(this.txfCountryOfOrigin.getText(), this.txfSupplier.getText(), Double.parseDouble(this.txfVolume.getText()), caskType);
+                this.hide();
+            } catch (IllegalArgumentException e) {
+                lblError.setText(e.getMessage());
+            }
+        } else {
+            lblError.setText("Der må ikke være nogen tomme felter");
+        }
     }
 }

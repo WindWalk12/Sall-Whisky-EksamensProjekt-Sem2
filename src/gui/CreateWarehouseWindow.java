@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -28,6 +29,7 @@ public class CreateWarehouseWindow extends Stage {
     }
 
     private TextField txfName, txfAddress;
+    private Label lblError = new Label();
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -60,15 +62,21 @@ public class CreateWarehouseWindow extends Stage {
         Button btnExit = new Button("Luk");
         pane.add(btnExit, 2, 2);
         btnExit.setOnAction(event -> this.exitAction());
+
+        lblError.setTextFill(Color.RED);
+        pane.add(lblError, 1, 3, 2, 1);
     }
 
     private void saveAction() {
+        if (!txfName.getText().isEmpty() && !txfAddress.getText().isEmpty()) {
+            String name = txfName.getText().trim();
+            String address = txfAddress.getText().trim();
 
-        String name = txfName.getText().trim();
-        String address = txfAddress.getText().trim();
-
-        Controller.createWarehouse(name, address);
-        this.hide();
+            Controller.createWarehouse(name, address);
+            this.hide();
+        } else {
+            lblError.setText("Navn og adresse kan ikke være tom");
+        }
     }
     private void exitAction() {
         this.hide();
