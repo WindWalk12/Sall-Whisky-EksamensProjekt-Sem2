@@ -36,7 +36,7 @@ public class Controller {
     }
 
     public static void putCask(StorageRack storageRack, int row, int col, Cask cask){
-        if (row < 1 || row > 100 || col < 1 || col > 100) {
+        if (row < 1 || col < 1) {
             throw new IllegalArgumentException("Hylder og pladser skal være over 0 og mindre end 100");
         } else {
             storageRack.putCask(cask,row,col);
@@ -44,7 +44,7 @@ public class Controller {
     }
 
     public static void removeCask(StorageRack storageRack, int row, int col, Cask cask){
-        if (row < 1 || row > 100 || col < 1 || col > 100) {
+        if (row < 1 || col < 1) {
             throw new IllegalArgumentException("Hylder og pladser skal være over 0 og mindre end 100");
         } else {
             storageRack.removeCask(cask, row, col);
@@ -52,7 +52,7 @@ public class Controller {
     }
 
     public static StorageRack createStorageRack(Warehouse warehouse, int row, int col) {
-        if (row < 1 || row > 100 || col < 1 || col > 100) {
+        if (row < 1 || col < 1) {
             throw new IllegalArgumentException("Hylder og pladser skal være over 0 og mindre end 100");
         } else {
             return warehouse.createStorageRack(row, col);
