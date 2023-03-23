@@ -1,16 +1,20 @@
 package gui;
 
+import application.controller.Controller;
 import application.model.Cask;
+import application.model.StorageRack;
+import application.model.Warehouse;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import storage.Storage;
+
+import java.util.HashMap;
 
 public class MoveCaskWindow extends Stage {
 
@@ -18,6 +22,7 @@ public class MoveCaskWindow extends Stage {
         this.initStyle(StageStyle.UTILITY);
         this.initModality(Modality.APPLICATION_MODAL);
         this.setResizable(false);
+        this.cask = cask;
 
         this.setTitle(title);
         GridPane pane = new GridPane();
@@ -27,9 +32,14 @@ public class MoveCaskWindow extends Stage {
         this.setScene(scene);
     }
 
-    private TextField txf;
+    private Cask cask;
 
-    private ComboBox cbxWarehouse, cbxStorageRacks;
+    private ComboBox<Warehouse> cbxWarehouse;
+
+    private ComboBox<StorageRack> cbxStorageRacks;
+
+    private ListView<HashMap<String, Cask>> lvwShelfs;
+
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -44,6 +54,10 @@ public class MoveCaskWindow extends Stage {
 
         cbxWarehouse = new ComboBox<>();
         pane.add(cbxWarehouse, 2, 0);
+        cbxWarehouse.getItems().setAll(Storage.getWarehouses());
+
+        ChangeListener<Warehouse> listener = (ov, oldKonference, newKonference) -> this.selectedWarehouseChanged();
+        cbxWarehouse.getSelectionModel().selectedItemProperty().addListener(listener);
 
         Label lblStorageRacks = new Label("Reol: ");
         pane.add(lblStorageRacks, 1, 1);
@@ -51,23 +65,53 @@ public class MoveCaskWindow extends Stage {
         cbxStorageRacks = new ComboBox<>();
         pane.add(cbxStorageRacks, 2, 1);
 
+        ChangeListener<StorageRack> listener2 = (ov, oldKonference, newKonference) -> this.selectedStorageRackChanged();
+        cbxStorageRacks.getSelectionModel().selectedItemProperty().addListener(listener2);
+
+
+        Label lblShelfs = new Label("Hylder og pladser");
+        pane.add(lblShelfs, 1, 2);
+
+        lvwShelfs  = new ListView<>();
+        pane.add(lvwShelfs, 2, 2);
+
+
+
         // Buttons which makes it possible to save or exit
 
         Button btnMove = new Button("Flyt til lager");
-        pane.add(btnMove, 1, 2);
+        pane.add(btnMove, 1, 4);
         btnMove.setOnAction(event -> this.moveAction());
 
         Button btnExit = new Button("Luk");
-        pane.add(btnExit, 2, 2);
+        pane.add(btnExit, 2, 4);
         btnExit.setOnAction(event -> this.exitAction());
     }
 
     private void moveAction() {
-
+        //Controller.putCask();
         this.hide();
     }
 
     private void exitAction() {
         this.hide();
+    }
+
+    private void selectedWarehouseChanged() {
+        Warehouse warehouse = cbxWarehouse.getSelectionModel().getSelectedItem();
+        if (warehouse != null) {
+            cbxStorageRacks.getItems().setAll(warehouse.getStorageRacks());
+        } else {
+            cbxStorageRacks.getItems().clear();
+        }
+    }
+
+    private void selectedStorageRackChanged() {
+        StorageRack storageRack = cbxStorageRacks.getSelectionModel().getSelectedItem();
+        if (storageRack != null) {
+            lvwShelfs.getItems().setAll((HashMap<String, Cask>) storageRack.getShelfs());
+        } else {
+            lvwShelfs.getItems().clear();
+        }
     }
 }
