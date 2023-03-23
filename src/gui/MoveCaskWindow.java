@@ -4,6 +4,7 @@ import application.model.Cask;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
@@ -37,6 +38,17 @@ public class MoveCaskWindow extends Stage {
 
         // Textfields, labels and combobox where information about the cask and warehouse is
 
+        Label lblWarehouse = new Label("Lager: ");
+        pane.add(lblWarehouse, 1, 0);
+
+        cbxWarehouse = new ComboBox<>();
+        pane.add(cbxWarehouse, 2, 0);
+
+        Label lblStorageRacks = new Label("Reol: ");
+        pane.add(lblStorageRacks, 1, 1);
+
+        cbxStorageRacks = new ComboBox<>();
+        pane.add(cbxStorageRacks, 2, 1);
 
     }
 }

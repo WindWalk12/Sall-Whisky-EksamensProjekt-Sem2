@@ -2,6 +2,7 @@ package gui;
 
 import application.controller.Controller;
 import application.model.Cask;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,6 +37,7 @@ public class CaskPane extends GridPane {
         Button btnMoveCask = new Button("Flyt fad til lager");
         this.add(btnMoveCask, 1,  2);
         btnMoveCask.setOnAction(event -> this.moveCaskAction());
+        btnMoveCask.disableProperty().bind(Bindings.isNull(lvwCasks.getSelectionModel().selectedItemProperty()));
 
 
     }
@@ -56,6 +58,9 @@ public class CaskPane extends GridPane {
 
     }
     private void moveCaskAction() {
+        MoveCaskWindow dia = new MoveCaskWindow("Flyt fad", this.lvwCasks.getSelectionModel().getSelectedItem());
+        dia.showAndWait();
+        updateList();
 
     }
 }
