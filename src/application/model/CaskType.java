@@ -1,7 +1,14 @@
 package application.model;
 
 public enum CaskType {
-    SHERRY,
     BOURBON,
-    REDWINE
+    BRANDY,
+    COGNAC,
+    REDWINE,
+    RUM,
+    SCOTCH,
+    SHERRY,
+    TEQUILA,
+    WHISKY,
+    WHITEWINE
 }

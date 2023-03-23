@@ -31,7 +31,7 @@ public class CreateCaskWindow extends Stage {
 
     private TextField txfCountryOfOrigin, txfSupplier, txfVolume;
 
-    private ComboBox cbxCaskType;
+    private ComboBox<CaskType> cbxCaskType;
 
     private Button btnOK, btnCancel;
     private Label lblError = new Label();
