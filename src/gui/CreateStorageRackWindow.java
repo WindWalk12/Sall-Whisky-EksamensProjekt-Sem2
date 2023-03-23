@@ -29,7 +29,7 @@ public class CreateStorageRackWindow extends Stage {
     }
 
     private Warehouse warehouse;
-    private TextField txfId, txfRow, txfCol, txfSelectedWarehouse;
+    private TextField txfRow, txfCol, txfSelectedWarehouse;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -47,18 +47,12 @@ public class CreateStorageRackWindow extends Stage {
         txfSelectedWarehouse.setText(warehouse.getName());
         txfSelectedWarehouse.setEditable(false);
 
-        Label lblId = new Label("ID: ");
-        pane.add(lblId, 1, 1);
-
-        txfId = new TextField();
-        pane.add(txfId, 2, 1);
-        txfId.setEditable(true);
 
         Label lblRow = new Label("Antal hylder: ");
-        pane.add(lblRow, 1, 2);
+        pane.add(lblRow, 1, 1);
 
         txfRow = new TextField();
-        pane.add(txfRow, 2, 2);
+        pane.add(txfRow, 2, 1);
         txfRow.setEditable(true);
 
         Label lblCol = new Label("Antal pladser pr hylde: ");
@@ -81,7 +75,6 @@ public class CreateStorageRackWindow extends Stage {
     }
     private void saveAction() {
 
-        String id = txfId.getText().trim();
         int row = Integer.parseInt(txfRow.getText().trim());
         int col = Integer.parseInt(txfCol.getText().trim());
 
