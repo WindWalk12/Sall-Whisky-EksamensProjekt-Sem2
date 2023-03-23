@@ -58,7 +58,5 @@ public class Controller {
         removeCask(SR1,2,2,C1);
         putCask(SR1,2,2,C1);
 
-        System.out.println(SR1.getShelfs().containsValue(C1));
-
     }
 }
