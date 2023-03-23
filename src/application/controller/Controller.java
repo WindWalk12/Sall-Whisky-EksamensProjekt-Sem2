@@ -39,6 +39,10 @@ public class Controller {
         storageRack.removeCask(cask,row,col);
     }
 
+    public static StorageRack createStorageRack(Warehouse warehouse, int row, int col) {
+        return warehouse.createStorageRack(row, col);
+    }
+
     public static void initStorage(){
         Warehouse WH1 = Controller.createWarehouse("WH1","Morbærhaven 30");
         Warehouse WH2 = Controller.createWarehouse("WH2", "Mortensmindevej 21");
