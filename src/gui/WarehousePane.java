@@ -4,6 +4,7 @@ package gui;
 import application.controller.Controller;
 import application.model.StorageRack;
 import application.model.Warehouse;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -47,6 +48,8 @@ public class WarehousePane extends GridPane {
         Button btnCreateStorageRack = new Button("Opret ny reol");
         this.add(btnCreateStorageRack, 2, 2);
         btnCreateStorageRack.setOnAction(event -> this.createStorageRackAction());
+        btnCreateStorageRack.disableProperty().bind(Bindings.isNull(lvwWarehouses.getSelectionModel().selectedItemProperty()));
+
     }
 
     // -------------------------------------------------------------------------
