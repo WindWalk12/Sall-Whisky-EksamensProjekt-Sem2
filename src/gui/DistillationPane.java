@@ -1,17 +1,16 @@
 package gui;
 
 import application.controller.Controller;
+import application.model.Distilate;
 import application.model.Distillation;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
 public class DistillationPane extends GridPane {
-
-    private ListView<Distillation> lvwDistillation;
+    private final TableView<Distillation> table = new TableView<>();
 
     public DistillationPane() {
         this.setPadding(new Insets(20));
@@ -24,27 +23,29 @@ public class DistillationPane extends GridPane {
         Label lblDistillation = new Label("Distillationer");
         this.add(lblDistillation, 0, 0);
 
-        lvwDistillation = new ListView<>();
-        this.add(lvwDistillation, 0, 1, 1, 7);
-        lvwDistillation.setPrefWidth(200);
-        lvwDistillation.setPrefHeight(300);
-        lvwDistillation.getItems().setAll(Controller.getDistillations());
+        TableColumn<Distillation, String> spiritBatchNr = new TableColumn<>("Batch nummer");
+        spiritBatchNr.setCellValueFactory(new PropertyValueFactory<>("spiritBatchNr"));
+        TableColumn <Distillation, String> volumen = new TableColumn<>("Volume");
+        volumen.setCellValueFactory(new PropertyValueFactory<>("volumen"));
+        table.getColumns().addAll(spiritBatchNr,volumen);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.add(table, 0, 1, 1, 7);
 
         // Buttons
 
         Button btnFillCask = new Button("Fyld på fad");
         this.add(btnFillCask, 1, 1);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
-        btnFillCask.disableProperty().bind(Bindings.isNull(lvwDistillation.getSelectionModel().selectedItemProperty()));
+        btnFillCask.disableProperty().bind(Bindings.isNull(table.getSelectionModel().selectedItemProperty()));
     }
 
     private void fillCaskAction() {
-        FillCaskWindow dia = new FillCaskWindow("Fyld på fad", this.lvwDistillation.getSelectionModel().getSelectedItem());
+        FillCaskWindow dia = new FillCaskWindow("Fyld på fad", this.table.getSelectionModel().getSelectedItem());
         dia.showAndWait();
         updateList();
     }
 
     public void updateList() {
-        lvwDistillation.getItems().setAll(Controller.getDistillations());
+        table.getItems().setAll(Controller.getDistillations());
     }
 }

@@ -12,8 +12,6 @@ public class Distillation {
     private String smokingMaterial;
     private String comment;
     private Maltbatch maltBatch;
-
-
     private String spiritBatchNr;
     private ArrayList<Distilate> distilates;
 
