@@ -43,6 +43,7 @@ public class CreateCaskWindow extends Stage {
         pane.setGridLinesVisible(false);
 
         // Textfields and labels where information about the new cask can be inserted
+
         Label lblCountryOfOrigin = new Label("Oprindelses land");
         pane.add(lblCountryOfOrigin,0,0);
         txfCountryOfOrigin = new TextField();

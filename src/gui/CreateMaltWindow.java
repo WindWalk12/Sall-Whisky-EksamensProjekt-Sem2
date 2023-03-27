@@ -49,43 +49,43 @@ public class CreateMaltWindow extends Stage {
         pane.add(lblCornField, 0, 0);
 
         txfCornField = new TextField();
-        pane.add(txfCornField, 0, 1);
+        pane.add(txfCornField, 1, 0);
         txfCornField.setEditable(true);
 
         Label lblGrainType = new Label("Kornsort");
-        pane.add(lblGrainType, 0, 2);
+        pane.add(lblGrainType, 0, 1);
 
         txfGrainType = new TextField();
-        pane.add(txfGrainType, 0, 3);
+        pane.add(txfGrainType, 1, 1);
         txfGrainType.setEditable(true);
 
         Label lblFarmer = new Label("Bondemand");
-        pane.add(lblFarmer, 0, 4);
+        pane.add(lblFarmer, 0, 2);
 
         txfFarmer = new TextField();
-        pane.add(txfFarmer, 0, 5);
+        pane.add(txfFarmer, 1, 2);
         txfFarmer.setEditable(true);
 
         Label lblHarvestDate = new Label("Høstdato");
-        pane.add(lblHarvestDate, 0, 6);
+        pane.add(lblHarvestDate, 0, 3);
 
         dpHarvestDate = new DatePicker();
-        pane.add(dpHarvestDate, 0, 7);
+        pane.add(dpHarvestDate, 1, 3);
 
         Label lblMaltDate = new Label("Maltningsdato");
-        pane.add(lblMaltDate, 0, 8);
+        pane.add(lblMaltDate, 0, 4);
 
         dpMaltDate = new DatePicker();
-        pane.add(dpMaltDate, 0, 9);
+        pane.add(dpMaltDate, 1, 4);
 
         // Buttons
 
         btnCreateMalt = new Button("Opret malt batch");
-        pane.add(btnCreateMalt, 0, 11);
+        pane.add(btnCreateMalt, 0, 6);
         btnCreateMalt.setOnAction(event -> this.createMaltAction());
 
         btnExit = new Button("Luk");
-        pane.add(btnExit, 1, 11);
+        pane.add(btnExit, 1, 6);
         btnExit.setOnAction(event -> this.exitAction());
 
     }
