@@ -71,9 +71,26 @@ public class Controller {
         }
     }
 
-    public static ArrayList<Distillation> getDistillation(){
+    public static Distillation createDistillation(double volumen, double alcPercentage, LocalDate startDate, LocalDate endDate, String employeeName, String smokingMaterial, String comment, Maltbatch maltBatch){
+        Distillation distillation = new Distillation(volumen, alcPercentage, startDate, endDate, employeeName, smokingMaterial, comment, maltBatch);
+        Storage.addDistillation(distillation);
+        return distillation;
+    }
+
+    public static ArrayList<Distillation> getDistillations(){
         return Storage.getDistillations();
     }
+
+    public static Maltbatch createMaltbatch(String cornField, String grainType, LocalDate harvestDate, String farmer, LocalDate maltDate){
+        Maltbatch maltbatch = new Maltbatch(cornField,grainType,harvestDate,farmer,maltDate);
+        Storage.addMaltbatch(maltbatch);
+        return maltbatch;
+    }
+
+    public static ArrayList<Maltbatch> getMaltbatches(){
+        return Storage.getMaltbatches();
+    }
+
 
     public static void initStorage(){
         Warehouse WH1 = Controller.createWarehouse("WH1","Morbærhaven 30");
