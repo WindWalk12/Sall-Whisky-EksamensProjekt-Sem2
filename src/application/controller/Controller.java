@@ -97,8 +97,8 @@ public class Controller {
 
 
     public static void initStorage(){
-        Warehouse WH1 = Controller.createWarehouse("WH1","Morbærhaven 30");
-        Warehouse WH2 = Controller.createWarehouse("WH2", "Mortensmindevej 21");
+        Warehouse WH1 = Controller.createWarehouse("Stalden hos Lars","Morbærhaven 30");
+        Warehouse WH2 = Controller.createWarehouse("Containeren", "Mortensmindevej 21");
 
         Cask C1 = Controller.createCask("Rusland","Destilleri",10,CaskType.BOURBON);
         Cask C2 = Controller.createCask("Spanien","Destilleri 2",40,CaskType.SHERRY);
