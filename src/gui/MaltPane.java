@@ -32,7 +32,7 @@ public class MaltPane extends GridPane {
 
         // Buttons
 
-        Button btnCreateMaltBatch = new Button("Opret nyt malt batch");
+        Button btnCreateMaltBatch = new Button("Opret malt batch");
         this.add(btnCreateMaltBatch, 1, 1);
         btnCreateMaltBatch.setOnAction(event -> this.createMaltBatchAction());
 

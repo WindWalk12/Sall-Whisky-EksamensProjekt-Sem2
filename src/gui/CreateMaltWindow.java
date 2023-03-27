@@ -1,7 +1,10 @@
 package gui;
 
+import application.controller.Controller;
+import application.model.Cask;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.time.LocalDate;
 
 
 public class CreateMaltWindow extends Stage {
@@ -29,6 +34,8 @@ public class CreateMaltWindow extends Stage {
     private TextField txfCornField, txfGrainType, txfFarmer;
 
     private DatePicker dpHarvestDate, dpMaltDate;
+
+    private Button btnCreateMalt, btnExit;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -52,6 +59,49 @@ public class CreateMaltWindow extends Stage {
         pane.add(txfGrainType, 0, 3);
         txfGrainType.setEditable(true);
 
+        Label lblFarmer = new Label("Bondemand");
+        pane.add(lblFarmer, 0, 4);
 
+        txfFarmer = new TextField();
+        pane.add(txfFarmer, 0, 5);
+        txfFarmer.setEditable(true);
+
+        Label lblHarvestDate = new Label("Høstdato");
+        pane.add(lblHarvestDate, 0, 6);
+
+        dpHarvestDate = new DatePicker();
+        pane.add(dpHarvestDate, 0, 7);
+
+        Label lblMaltDate = new Label("Maltningsdato");
+        pane.add(lblMaltDate, 0, 8);
+
+        dpMaltDate = new DatePicker();
+        pane.add(dpMaltDate, 0, 9);
+
+        // Buttons
+
+        btnCreateMalt = new Button("Opret malt batch");
+        pane.add(btnCreateMalt, 0, 11);
+        btnCreateMalt.setOnAction(event -> this.createMaltAction());
+
+        btnExit = new Button("Luk");
+        pane.add(btnExit, 1, 11);
+        btnExit.setOnAction(event -> this.exitAction());
+
+    }
+
+    private void createMaltAction() {
+
+        String cornfield = txfCornField.getText().trim();
+        String graintype = txfGrainType.getText().trim();
+        String farmer = txfFarmer.getText().trim();
+        LocalDate harvestdate = dpHarvestDate.getValue();
+        LocalDate maltdate = dpMaltDate.getValue();
+
+        Controller.createMaltbatch(cornfield, graintype, harvestdate, farmer, maltdate);
+        this.hide();
+    }
+    private void exitAction() {
+        this.hide();
     }
 }

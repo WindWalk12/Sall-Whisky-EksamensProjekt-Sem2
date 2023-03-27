@@ -38,7 +38,7 @@ public class FillCaskWindow extends Stage {
 
     private DatePicker dpFillDate;
 
-    private Button btnFillCask, btnCancel;
+    private Button btnFillCask, btnExit;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -80,7 +80,7 @@ public class FillCaskWindow extends Stage {
         pane.add(btnFillCask, 0, 6);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
 
-        Button btnExit = new Button("Luk");
+        btnExit = new Button("Luk");
         pane.add(btnExit, 1, 6);
         btnExit.setOnAction(event -> this.exitAction());
 
