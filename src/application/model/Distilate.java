@@ -5,10 +5,13 @@ import java.util.ArrayList;
 
 public class Distilate {
     private final LocalDate fillingDate;
+    private final Distillation distillation;
     private ArrayList<Cask> casks = new ArrayList<>();
 
-    public Distilate(LocalDate fillingDate) {
+    public Distilate(LocalDate fillingDate, Distillation distillation, Cask cask) {
         this.fillingDate = fillingDate;
+        this.distillation = distillation;
+        addCask(cask);
     }
 
     public void addCask(Cask cask) {
