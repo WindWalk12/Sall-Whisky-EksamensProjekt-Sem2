@@ -1,5 +1,7 @@
 package application.model;
 
+import java.util.ArrayList;
+
 public class Cask {
     private String id;
     private CaskType caskType;
@@ -8,6 +10,7 @@ public class Cask {
     private double volume;
     private StorageRack storageRack;
     private static int caskCounter = 0;
+    private ArrayList<Distilate> distilates = new ArrayList<>();
 
     public Cask(String countryOfOrigin, String supplier, double volume, CaskType caskType) {
         caskCounter ++;
@@ -52,6 +55,16 @@ public class Cask {
 
     public void setStorageRack(StorageRack storageRack) {
         this.storageRack = storageRack;
+    }
+
+    public ArrayList<Distilate> getDistilates() {
+        return new ArrayList<>(distilates);
+    }
+
+    public void addDistilate(Distilate distilate) {
+        if (!distilates.contains(distilate)) {
+            distilates.add(distilate);
+        }
     }
 
     @Override

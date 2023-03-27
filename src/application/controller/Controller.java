@@ -1,11 +1,9 @@
 package application.controller;
 
-import application.model.Cask;
-import application.model.CaskType;
-import application.model.StorageRack;
-import application.model.Warehouse;
+import application.model.*;
 import storage.Storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Controller {
@@ -49,6 +47,20 @@ public class Controller {
         } else {
             storageRack.removeCask(cask, row, col);
         }
+    }
+
+    public static ArrayList<Cask> getEmptyCasks() {
+        ArrayList<Cask> emptyCasks = new ArrayList<>();
+        for (Cask c :Storage.getCasks()) {
+            if (c.getDistilates().size() < 1) {
+                emptyCasks.add(c);
+            }
+        }
+        return emptyCasks;
+    }
+
+    public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask) {
+        return distillation.fillCask(fillingDate, distillation, cask);
     }
 
     public static StorageRack createStorageRack(Warehouse warehouse, int row, int col) {

@@ -12,6 +12,7 @@ public class Distilate {
         this.fillingDate = fillingDate;
         this.distillation = distillation;
         addCask(cask);
+        cask.addDistilate(this);
     }
 
     public void addCask(Cask cask) {
