@@ -87,10 +87,6 @@ public class Cask {
 
     @Override
     public String toString(){
-        if(this.storageRack != null)
-            return this.id + " " + this.caskType.toString() + " " + this.storageRack.getWarehouse().getName() + " " + this.storageRack + " " + this.volume;
-        else
-            return this.id + " " + this.caskType.toString() + " " + null + " " + this.storageRack + " " + this.volume;
-
+        return this.id + " " + this.caskType.toString() + " " + this.tbwWarehouseName + ", " + this.tbwStorageRackId + ", " + this.volume + "L";
     }
 }
