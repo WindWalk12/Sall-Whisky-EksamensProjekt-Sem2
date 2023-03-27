@@ -71,6 +71,7 @@ public class FillCaskWindow extends Stage {
         dpFillDate = new DatePicker();
         pane.add(dpFillDate, 0, 5);
         dpFillDate.setEditable(true);
+        dpFillDate.setValue(LocalDate.now());
 
 
         // Buttons
