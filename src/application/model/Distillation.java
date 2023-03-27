@@ -1,6 +1,7 @@
 package application.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Distillation {
     private double volumen;
@@ -11,6 +12,7 @@ public class Distillation {
     private String smokingMaterial;
     private String comment;
     private Maltbatch maltBatch;
+    private ArrayList<Distilate> distilates;
 
     public Distillation(double volumen, double alcPercentage, LocalDate startDate, LocalDate endDate, String employeeName, String smokingMaterial, String comment, Maltbatch maltBatch) {
         this.volumen = volumen;
@@ -21,6 +23,7 @@ public class Distillation {
         this.smokingMaterial = smokingMaterial;
         this.comment = comment;
         this.maltBatch = maltBatch;
+        distilates = new ArrayList<>();
     }
 
     public double getVolumen() {
@@ -87,5 +90,9 @@ public class Distillation {
         this.maltBatch = maltBatch;
     }
 
-
+    public Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask){
+        Distilate distilate = new Distilate(fillingDate, distillation, cask);
+        distilates.add(distilate);
+        return distilate;
+    }
 }
