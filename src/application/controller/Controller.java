@@ -71,8 +71,8 @@ public class Controller {
         }
     }
 
-    public static Distillation createDistillation(double volumen, double alcPercentage, LocalDate startDate, LocalDate endDate, String employeeName, String smokingMaterial, String comment, Maltbatch maltBatch){
-        Distillation distillation = new Distillation(volumen, alcPercentage, startDate, endDate, employeeName, smokingMaterial, comment, maltBatch);
+    public static Distillation createDistillation(double volumen, double alcPercentage, LocalDate startDate, LocalDate endDate, String employeeName, String smokingMaterial, String comment, Maltbatch maltBatch, String spiritBatchNr){
+        Distillation distillation = new Distillation(volumen, alcPercentage, startDate, endDate, employeeName, smokingMaterial, comment, maltBatch, spiritBatchNr);
         Storage.addDistillation(distillation);
         return distillation;
     }
@@ -109,6 +109,6 @@ public class Controller {
 
         Maltbatch mb1 = Controller.createMaltbatch("Strongfield", "Evergreen", LocalDate.now(), "Lars", LocalDate.now().plusDays(5));
 
-        Distillation dt1 = Controller.createDistillation(1000.5, 86.6, LocalDate.now(), LocalDate.now().plusDays(5), "Jørgen", "Ingen", "Smager allerede godt", mb1);
+        Distillation dt1 = Controller.createDistillation(1000.5, 86.6, LocalDate.now(), LocalDate.now().plusDays(5), "Jørgen", "Ingen", "Smager allerede godt", mb1, "NM77P");
     }
 }

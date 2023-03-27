@@ -12,9 +12,12 @@ public class Distillation {
     private String smokingMaterial;
     private String comment;
     private Maltbatch maltBatch;
+
+
+    private String spiritBatchNr;
     private ArrayList<Distilate> distilates;
 
-    public Distillation(double volumen, double alcPercentage, LocalDate startDate, LocalDate endDate, String employeeName, String smokingMaterial, String comment, Maltbatch maltBatch) {
+    public Distillation(double volumen, double alcPercentage, LocalDate startDate, LocalDate endDate, String employeeName, String smokingMaterial, String comment, Maltbatch maltBatch, String spiritBatchNr) {
         this.volumen = volumen;
         this.alcPercentage = alcPercentage;
         this.startDate = startDate;
@@ -23,6 +26,7 @@ public class Distillation {
         this.smokingMaterial = smokingMaterial;
         this.comment = comment;
         this.maltBatch = maltBatch;
+        this.spiritBatchNr = spiritBatchNr;
         distilates = new ArrayList<>();
     }
 
@@ -88,6 +92,10 @@ public class Distillation {
 
     public void setMaltBatch(Maltbatch maltBatch) {
         this.maltBatch = maltBatch;
+    }
+
+    public String getSpiritBatchNr() {
+        return spiritBatchNr;
     }
 
     public Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask){

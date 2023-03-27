@@ -55,6 +55,14 @@ public class StartWindow extends Application {
         tabWarehousePane.setContent(warehousePane);
         tabWarehousePane.setOnSelectionChanged(event -> warehousePane.updateList());
 
+        Tab tabDistillationPane = new Tab("Distillationer");
+        tabPane.getTabs().add(tabDistillationPane);
+
+        DistillationPane distillationPane = new DistillationPane();
+        tabDistillationPane.setContent(distillationPane);
+        tabDistillationPane.setOnSelectionChanged(event -> distillationPane.updateList());
+
+
 
     }
 
