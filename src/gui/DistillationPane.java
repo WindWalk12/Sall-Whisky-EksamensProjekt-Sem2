@@ -2,6 +2,7 @@ package gui;
 
 import application.controller.Controller;
 import application.model.Distillation;
+import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -34,6 +35,7 @@ public class DistillationPane extends GridPane {
         Button btnFillCask = new Button("Fyld på fad");
         this.add(btnFillCask, 1, 1);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
+        btnFillCask.disableProperty().bind(Bindings.isNull(lvwDistillation.getSelectionModel().selectedItemProperty()));
     }
 
     private void fillCaskAction() {

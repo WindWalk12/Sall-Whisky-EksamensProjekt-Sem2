@@ -103,4 +103,9 @@ public class Distillation {
         distilates.add(distilate);
         return distilate;
     }
+
+    @Override
+    public String toString() {
+        return spiritBatchNr;
+    }
 }

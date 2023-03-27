@@ -49,38 +49,38 @@ public class FillCaskWindow extends Stage {
         // Textfield and labels
 
         Label lblSelectedDistillation = new Label("Distillation");
-        pane.add(lblSelectedDistillation, 1, 0);
+        pane.add(lblSelectedDistillation, 0, 0);
 
         txfSelectedDistillation = new TextField();
-        pane.add(txfSelectedDistillation, 2, 0);
+        pane.add(txfSelectedDistillation, 0, 1);
         txfSelectedDistillation.setText(distillation.getSpiritBatchNr());
         txfSelectedDistillation.setEditable(false);
 
 
         Label lblCasks = new Label("Fade");
-        pane.add(lblCasks, 3, 0);
+        pane.add(lblCasks, 0, 2);
 
         cbxCasks = new ComboBox<>();
-        pane.add(cbxCasks, 4, 0);
-        cbxCasks.getItems().setAll(Controller.getCasks());
+        pane.add(cbxCasks, 0, 3);
+        cbxCasks.getItems().setAll(Controller.getEmptyCasks());
         cbxCasks.getSelectionModel().select(0);
 
         Label lblFillDate = new Label("Påfyldnings dato");
-        pane.add(lblFillDate, 5, 0);
+        pane.add(lblFillDate, 0, 4);
 
         dpFillDate = new DatePicker();
-        pane.add(dpFillDate, 6, 0);
+        pane.add(dpFillDate, 0, 5);
         dpFillDate.setEditable(true);
 
 
         // Buttons
 
         btnFillCask = new Button("Fyld på fad");
-        pane.add(btnFillCask, 7, 0);
+        pane.add(btnFillCask, 0, 6);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
 
         Button btnExit = new Button("Luk");
-        pane.add(btnExit, 7, 1);
+        pane.add(btnExit, 1, 6);
         btnExit.setOnAction(event -> this.exitAction());
 
     }
@@ -88,10 +88,10 @@ public class FillCaskWindow extends Stage {
     private void fillCaskAction() {
 
         LocalDate fillingDate = dpFillDate.getValue();
-
         Cask cask = cbxCasks.getValue();
-
         Controller.fillCask(fillingDate, distillation, cask);
+
+        this.hide();
 
     }
     private void exitAction() {
