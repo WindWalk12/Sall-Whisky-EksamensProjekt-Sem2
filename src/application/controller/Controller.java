@@ -60,7 +60,11 @@ public class Controller {
     }
 
     public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask) {
-        return distillation.fillCask(fillingDate, distillation, cask);
+        if (distillation.getVolumen() - cask.getVolume() < 0) {
+            throw new RuntimeException("Der er ikke nok distilat til at fylde fadet op");
+        } else {
+            return distillation.fillCask(fillingDate, distillation, cask);
+        }
     }
 
     public static StorageRack createStorageRack(Warehouse warehouse, int row, int col) {

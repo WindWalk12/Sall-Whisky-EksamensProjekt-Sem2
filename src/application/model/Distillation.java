@@ -101,11 +101,12 @@ public class Distillation {
     public Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask){
         Distilate distilate = new Distilate(fillingDate, distillation, cask);
         distilates.add(distilate);
+        this.volumen -= cask.getVolume();
         return distilate;
     }
 
     @Override
     public String toString() {
-        return spiritBatchNr;
+        return spiritBatchNr + " - volume: " + volumen;
     }
 }
