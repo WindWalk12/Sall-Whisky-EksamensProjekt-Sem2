@@ -76,9 +76,15 @@ public class Controller {
     }
 
     public static Distillation createDistillation(double volumen, double alcPercentage, LocalDate startDate, LocalDate endDate, String employeeName, String smokingMaterial, String comment, Maltbatch maltBatch, String spiritBatchNr){
-        Distillation distillation = new Distillation(volumen, alcPercentage, startDate, endDate, employeeName, smokingMaterial, comment, maltBatch, spiritBatchNr);
-        Storage.addDistillation(distillation);
-        return distillation;
+        if (volumen < 1) {
+            throw new IllegalArgumentException("Volumen skal være 1 eller mere");
+        } else if (alcPercentage < 0 || alcPercentage > 100) {
+            throw new IllegalArgumentException("Alkohol procenten kan ikke være under 0 eller over 100");
+        } else {
+            Distillation distillation = new Distillation(volumen, alcPercentage, startDate, endDate, employeeName, smokingMaterial, comment, maltBatch, spiritBatchNr);
+            Storage.addDistillation(distillation);
+            return distillation;
+        }
     }
 
     public static ArrayList<Distillation> getDistillations(){

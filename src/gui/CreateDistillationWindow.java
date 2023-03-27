@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -37,6 +38,8 @@ public class CreateDistillationWindow extends Stage {
     private Button btnCreateDistillation, btnExit;
 
     private ComboBox<Maltbatch> cbxMaltBatches;
+
+    private Label lblError = new Label();
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -117,22 +120,32 @@ public class CreateDistillationWindow extends Stage {
         pane.add(btnExit, 1, 9);
         btnExit.setOnAction(event -> this.exitAction());
 
+        lblError.setTextFill(Color.RED);
+        pane.add(lblError, 0, 10, 2, 1);
+
     }
 
     private void createDistillationAction() {
+        if (!txfVolume.getText().isEmpty() && !txfAlcPercentage.getText().isEmpty() && dpStartDate.getValue() != null && dpEndDate.getValue() != null && !txfEmployeeName.getText().isEmpty() && !txfSpiritBatchNr.getText().isEmpty() && cbxMaltBatches.getValue() != null) {
+            try {
+                double volume = Double.parseDouble(txfVolume.getText().trim());
+                double alcPercentage = Double.parseDouble(txfAlcPercentage.getText().trim());
+                LocalDate startDate = dpStartDate.getValue();
+                LocalDate endDate = dpEndDate.getValue();
+                String employeeName = txfEmployeeName.getText().trim();
+                String smokingMaterial = txfSmokingMaterial.getText().trim();
+                String spiritbatch = txfSpiritBatchNr.getText().trim();
+                String comment = txaComment.getText().trim();
+                Maltbatch maltbatch = cbxMaltBatches.getValue();
+                Controller.createDistillation(volume, alcPercentage, startDate, endDate, employeeName, smokingMaterial, comment, maltbatch, spiritbatch);
+                this.hide();
+            } catch (IllegalArgumentException e) {
+                lblError.setText(e.getMessage());
+            }
+        } else {
+            lblError.setText("Der mangler information. Kun Røgmatriale og kommentar kan udeblive");
+        }
 
-        double volume = Double.parseDouble(txfVolume.getText().trim());
-        double alcPercentage = Double.parseDouble(txfAlcPercentage.getText().trim());
-        LocalDate startDate = dpStartDate.getValue();
-        LocalDate endDate = dpEndDate.getValue();
-        String employeeName = txfEmployeeName.getText().trim();
-        String smokingMaterial = txfSmokingMaterial.getText().trim();
-        String spiritbatch = txfSpiritBatchNr.getText().trim();
-        String comment = txaComment.getText().trim();
-        Maltbatch maltbatch = cbxMaltBatches.getValue();
-
-        Controller.createDistillation(volume, alcPercentage, startDate, endDate, employeeName, smokingMaterial, comment, maltbatch, spiritbatch);
-        this.hide();
     }
 
     private void exitAction() {

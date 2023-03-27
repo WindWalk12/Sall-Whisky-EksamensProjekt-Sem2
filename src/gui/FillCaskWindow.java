@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -39,6 +40,8 @@ public class FillCaskWindow extends Stage {
     private DatePicker dpFillDate;
 
     private Button btnFillCask, btnExit;
+
+    private Label lblError = new Label();
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -84,16 +87,20 @@ public class FillCaskWindow extends Stage {
         pane.add(btnExit, 1, 6);
         btnExit.setOnAction(event -> this.exitAction());
 
+        lblError.setTextFill(Color.RED);
+        pane.add(lblError, 0, 7, 2, 1);
+
     }
 
     private void fillCaskAction() {
-
-        LocalDate fillingDate = dpFillDate.getValue();
-        Cask cask = cbxCasks.getValue();
-        Controller.fillCask(fillingDate, distillation, cask);
-
-        this.hide();
-
+        try {
+            LocalDate fillingDate = dpFillDate.getValue();
+            Cask cask = cbxCasks.getValue();
+            Controller.fillCask(fillingDate, distillation, cask);
+            this.hide();
+        } catch (RuntimeException e) {
+            lblError.setText(e.getMessage());
+        }
     }
     private void exitAction() {
         this.hide();

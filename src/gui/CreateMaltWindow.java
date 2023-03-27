@@ -9,6 +9,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -36,6 +37,8 @@ public class CreateMaltWindow extends Stage {
     private DatePicker dpHarvestDate, dpMaltDate;
 
     private Button btnCreateMalt, btnExit;
+
+    private Label lblError = new Label();
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -88,18 +91,23 @@ public class CreateMaltWindow extends Stage {
         pane.add(btnExit, 1, 6);
         btnExit.setOnAction(event -> this.exitAction());
 
+        lblError.setTextFill(Color.RED);
+        pane.add(lblError, 0, 7, 2, 1);
+
     }
 
     private void createMaltAction() {
-
-        String cornfield = txfCornField.getText().trim();
-        String graintype = txfGrainType.getText().trim();
-        String farmer = txfFarmer.getText().trim();
-        LocalDate harvestdate = dpHarvestDate.getValue();
-        LocalDate maltdate = dpMaltDate.getValue();
-
-        Controller.createMaltbatch(cornfield, graintype, harvestdate, farmer, maltdate);
-        this.hide();
+        if (!txfCornField.getText().isEmpty() && !txfGrainType.getText().isEmpty() && !txfFarmer.getText().isEmpty() && dpHarvestDate.getValue() != null && dpMaltDate.getValue() != null) {
+            String cornfield = txfCornField.getText().trim();
+            String graintype = txfGrainType.getText().trim();
+            String farmer = txfFarmer.getText().trim();
+            LocalDate harvestdate = dpHarvestDate.getValue();
+            LocalDate maltdate = dpMaltDate.getValue();
+            Controller.createMaltbatch(cornfield, graintype, harvestdate, farmer, maltdate);
+            this.hide();
+        } else {
+            lblError.setText("Der må ikke være nogen tomme felter");
+        }
     }
     private void exitAction() {
         this.hide();
