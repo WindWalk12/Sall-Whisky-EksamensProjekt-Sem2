@@ -19,7 +19,7 @@ public class DistillationPane extends GridPane {
 
         // Labels and ListView
 
-        Label lblDistillation = new Label("Distillationer");
+        Label lblDistillation = new Label("Destillationer");
         this.add(lblDistillation, 0, 0);
 
         TableColumn<Distillation, String> spiritBatchNr = new TableColumn<>("Batch nummer");
