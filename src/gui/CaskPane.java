@@ -57,7 +57,6 @@ public class CaskPane extends GridPane {
         CreateCaskWindow dia = new CreateCaskWindow("Opret nyt fad");
         dia.showAndWait();
         updateList();
-
     }
     private void moveCaskAction() {
         MoveCaskWindow dia = new MoveCaskWindow("Flyt fad", this.lvwCasks.getSelectionModel().getSelectedItem());

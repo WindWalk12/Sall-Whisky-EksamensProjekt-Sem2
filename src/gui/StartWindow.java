@@ -41,6 +41,13 @@ public class StartWindow extends Application {
     private void initTabPane(TabPane tabPane) {
         tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 
+        Tab tabMaltPane = new Tab("Malt");
+        tabPane.getTabs().add(tabMaltPane);
+
+        MaltPane maltPane = new MaltPane();
+        tabMaltPane.setContent(maltPane);
+        tabMaltPane.setOnSelectionChanged(event -> maltPane.updateList());
+
         Tab tabCaskPane = new Tab("Fade");
         tabPane.getTabs().add(tabCaskPane);
 

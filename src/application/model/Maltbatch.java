@@ -27,5 +27,9 @@ public class Maltbatch {
         this.maltDate = maltDate;
     }
 
+    public String toString() {
+        return grainType + " " + cornField;
+    }
+
 
 }

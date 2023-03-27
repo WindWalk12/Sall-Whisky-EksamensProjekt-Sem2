@@ -111,7 +111,7 @@ public class Controller {
         removeCask(SR1,2,2,C1);
         putCask(SR1,2,2,C1);
 
-        Maltbatch mb1 = Controller.createMaltbatch("Strongfield", "Evergreen", LocalDate.now(), "Lars", LocalDate.now().plusDays(5));
+        Maltbatch mb1 = Controller.createMaltbatch("Mosevang", "Evergreen", LocalDate.now(), "Lars", LocalDate.now().plusDays(5));
 
         Distillation dt1 = Controller.createDistillation(1000.5, 86.6, LocalDate.now(), LocalDate.now().plusDays(5), "Jørgen", "Ingen", "Smager allerede godt", mb1, "NM77P");
     }
