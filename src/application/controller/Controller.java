@@ -71,6 +71,10 @@ public class Controller {
         }
     }
 
+    public static ArrayList<Distillation> getDistillation(){
+        return Storage.getDistillations();
+    }
+
     public static void initStorage(){
         Warehouse WH1 = Controller.createWarehouse("WH1","Morbærhaven 30");
         Warehouse WH2 = Controller.createWarehouse("WH2", "Mortensmindevej 21");
