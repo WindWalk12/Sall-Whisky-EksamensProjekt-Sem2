@@ -39,6 +39,9 @@ public class WarehousePane extends GridPane {
         ChangeListener<Warehouse> listener = (ov, oldWarehouse, newWarehouse) -> this.selectedWarehouseChanged();
         table.getSelectionModel().selectedItemProperty().addListener(listener);
 
+        Label lblStorageRack = new Label("Reoler");
+        this.add(lblStorageRack, 1, 0);
+
         lvwStorageRacks = new ListView<>();
         this.add(lvwStorageRacks, 1, 1, 1, 7);
         lvwStorageRacks.setPrefWidth(200);

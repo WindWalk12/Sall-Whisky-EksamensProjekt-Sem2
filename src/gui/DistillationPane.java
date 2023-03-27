@@ -24,7 +24,7 @@ public class DistillationPane extends GridPane {
 
         TableColumn<Distillation, String> spiritBatchNr = new TableColumn<>("Batch nummer");
         spiritBatchNr.setCellValueFactory(new PropertyValueFactory<>("spiritBatchNr"));
-        TableColumn <Distillation, String> volumen = new TableColumn<>("Volume");
+        TableColumn <Distillation, String> volumen = new TableColumn<>("Volume[L]");
         volumen.setCellValueFactory(new PropertyValueFactory<>("volumen"));
         table.getColumns().addAll(spiritBatchNr,volumen);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

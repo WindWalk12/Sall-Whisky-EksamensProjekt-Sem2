@@ -27,6 +27,18 @@ public class Maltbatch {
         this.maltDate = maltDate;
     }
 
+    public String getCornField() {
+        return cornField;
+    }
+
+    public String getGrainType() {
+        return grainType;
+    }
+
+    public LocalDate getHarvestDate() {
+        return harvestDate;
+    }
+
     public String toString() {
         return grainType + " " + cornField;
     }
