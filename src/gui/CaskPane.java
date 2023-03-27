@@ -26,7 +26,7 @@ public class CaskPane extends GridPane {
         castType.setCellValueFactory(new PropertyValueFactory<>("caskType"));
         TableColumn<Cask, String> tbwWarehouseName = new TableColumn<>("Lager");
         tbwWarehouseName.setCellValueFactory(new PropertyValueFactory<>("tbwWarehouseName"));
-        TableColumn<Cask, String> tbwStorageRackId = new TableColumn<>("Hylde");
+        TableColumn<Cask, String> tbwStorageRackId = new TableColumn<>("Plads");
         tbwStorageRackId.setCellValueFactory(new PropertyValueFactory<>("tbwStorageRackId"));
         TableColumn<Cask, Double> volume = new TableColumn<>("volume[L]");
         volume.setCellValueFactory(new PropertyValueFactory<>("volume"));

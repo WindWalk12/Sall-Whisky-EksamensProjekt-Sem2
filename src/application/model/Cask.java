@@ -71,7 +71,7 @@ public class Cask {
         this.storageRack = storageRack;
         if (storageRack != null) {
             this.tbwWarehouseName = storageRack.getWarehouse().getName();
-            this.tbwStorageRackId = storageRack.getId();
+            this.tbwStorageRackId = "Reol-" + storageRack.getId() + " " + storageRack.getKeyFromValue(this);
         }
     }
 

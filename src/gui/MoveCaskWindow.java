@@ -101,12 +101,7 @@ public class MoveCaskWindow extends Stage {
             String[] splitShelf = shelf.split(" ");
             if (splitShelf[1].equals("Ledig")) {
                 if (cask.getStorageRack() != null) {
-                    String key = "";
-                    for (Map.Entry<String, Cask> map :cask.getStorageRack().getShelfs().entrySet()) {
-                        if (Objects.equals(cask, map.getValue())) {
-                            key = map.getKey();
-                        }
-                    }
+                    String key = cask.getStorageRack().getKeyFromValue(cask);
                     String row = key.split("\\.")[0];
                     String col = key.split("\\.")[1];
                     Controller.removeCask(cask.getStorageRack(), Integer.parseInt(row), Integer.parseInt(col), cask);

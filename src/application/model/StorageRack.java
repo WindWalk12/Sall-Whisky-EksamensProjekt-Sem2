@@ -1,9 +1,6 @@
 package application.model;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class StorageRack {
 
@@ -38,6 +35,16 @@ public class StorageRack {
         shelfs.put(row + "." + col, null);
         cask.setStorageRack(null);
         warehouse.increaseSpace();
+    }
+
+    public String getKeyFromValue(Cask cask) {
+        String key = "";
+        for (Map.Entry<String, Cask> map :cask.getStorageRack().getShelfs().entrySet()) {
+            if (Objects.equals(cask, map.getValue())) {
+                key = map.getKey();
+            }
+        }
+        return key;
     }
 
     // Simple methods
