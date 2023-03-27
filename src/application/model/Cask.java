@@ -64,7 +64,7 @@ public class Cask {
     }
 
     public String getCaskType() {
-        return caskType.toString();
+        return caskType.toString().charAt(0) + caskType.toString().substring(1).toLowerCase();
     }
 
     public void setStorageRack(StorageRack storageRack) {
