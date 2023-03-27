@@ -1,7 +1,6 @@
 package gui;
 
 import application.controller.Controller;
-import application.model.Distilate;
 import application.model.Distillation;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;

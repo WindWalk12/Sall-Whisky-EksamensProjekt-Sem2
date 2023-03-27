@@ -11,6 +11,8 @@ public class Cask {
     private StorageRack storageRack;
     private static int caskCounter = 0;
     private ArrayList<Distilate> distilates = new ArrayList<>();
+    private String tbwWarehouseName = "Ikke på lager";
+    private String tbwStorageRackId = "Ikke på hylde";
 
     public Cask(String countryOfOrigin, String supplier, double volume, CaskType caskType) {
         caskCounter ++;
@@ -53,8 +55,24 @@ public class Cask {
         return storageRack;
     }
 
+    public String getTbwWarehouseName() {
+        return tbwWarehouseName;
+    }
+
+    public String getTbwStorageRackId() {
+        return tbwStorageRackId;
+    }
+
+    public String getCaskType() {
+        return caskType.toString();
+    }
+
     public void setStorageRack(StorageRack storageRack) {
         this.storageRack = storageRack;
+        if (storageRack != null) {
+            this.tbwWarehouseName = storageRack.getWarehouse().getName();
+            this.tbwStorageRackId = storageRack.getId();
+        }
     }
 
     public ArrayList<Distilate> getDistilates() {
