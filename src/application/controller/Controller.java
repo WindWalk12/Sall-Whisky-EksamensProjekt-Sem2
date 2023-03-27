@@ -61,7 +61,7 @@ public class Controller {
 
     public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask) {
         if (distillation.getVolumen() - cask.getVolume() < 0) {
-            throw new RuntimeException("Der er ikke nok distilat til at fylde fadet op");
+            throw new RuntimeException("Der er ikke nok distilation til at fylde fadet op");
         } else {
             return distillation.fillCask(fillingDate, distillation, cask);
         }
