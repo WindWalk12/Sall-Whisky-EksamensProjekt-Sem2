@@ -41,6 +41,7 @@ public class MaltPane extends GridPane {
         Button btnCreateMaltBatch = new Button("Opret malt batch");
         this.add(btnCreateMaltBatch, 1, 1);
         btnCreateMaltBatch.setOnAction(event -> this.createMaltBatchAction());
+        btnCreateMaltBatch.setMaxWidth(Double.MAX_VALUE);
 
     }
     public void updateList() {

@@ -41,11 +41,13 @@ public class CaskPane extends GridPane {
         Button btnCreateNewCask = new Button("Opret nyt fad");
         this.add(btnCreateNewCask, 1, 1);
         btnCreateNewCask.setOnAction(event -> this.createNewCaskAction());
+        btnCreateNewCask.setMaxWidth(Double.MAX_VALUE);
 
         Button btnMoveCask = new Button("Flyt fad til lager");
         this.add(btnMoveCask, 1,  2);
         btnMoveCask.setOnAction(event -> this.moveCaskAction());
         btnMoveCask.disableProperty().bind(Bindings.isNull(table.getSelectionModel().selectedItemProperty()));
+        btnMoveCask.setMaxWidth(Double.MAX_VALUE);
 
 
     }

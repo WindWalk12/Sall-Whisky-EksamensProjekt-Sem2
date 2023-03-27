@@ -53,11 +53,13 @@ public class WarehousePane extends GridPane {
         Button btnCreateWarehouse = new Button("Opret nyt lager");
         this.add(btnCreateWarehouse, 2, 1);
         btnCreateWarehouse.setOnAction(event -> this.createWarehouseAction());
+        btnCreateWarehouse.setMaxWidth(Double.MAX_VALUE);
 
         Button btnCreateStorageRack = new Button("Opret ny reol");
         this.add(btnCreateStorageRack, 2, 2);
         btnCreateStorageRack.setOnAction(event -> this.createStorageRackAction());
         btnCreateStorageRack.disableProperty().bind(Bindings.isNull(table.getSelectionModel().selectedItemProperty()));
+        btnCreateStorageRack.setMaxWidth(Double.MAX_VALUE);
 
     }
 
