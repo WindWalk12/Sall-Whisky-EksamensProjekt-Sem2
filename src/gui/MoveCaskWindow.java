@@ -59,7 +59,7 @@ public class MoveCaskWindow extends Stage {
         pane.add(cbxWarehouse, 2, 0);
         cbxWarehouse.getItems().setAll(Storage.getWarehouses());
 
-        ChangeListener<Warehouse> listener = (ov, oldKonference, newKonference) -> this.selectedWarehouseChanged();
+        ChangeListener<Warehouse> listener = (ov, oldWarehouse, newWarehouse) -> this.selectedWarehouseChanged();
         cbxWarehouse.getSelectionModel().selectedItemProperty().addListener(listener);
 
         Label lblStorageRacks = new Label("Reol: ");
@@ -68,7 +68,7 @@ public class MoveCaskWindow extends Stage {
         cbxStorageRacks = new ComboBox<>();
         pane.add(cbxStorageRacks, 2, 1);
 
-        ChangeListener<StorageRack> listener2 = (ov, oldKonference, newKonference) -> this.selectedStorageRackChanged();
+        ChangeListener<StorageRack> listener2 = (ov, oldStorageRack, newStorageRack) -> this.selectedStorageRackChanged();
         cbxStorageRacks.getSelectionModel().selectedItemProperty().addListener(listener2);
 
 

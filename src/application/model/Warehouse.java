@@ -45,6 +45,10 @@ public class Warehouse {
         return new ArrayList<>(storageRacks);
     }
 
+    public int getAvailableSpaces() {
+        return availableSpaces;
+    }
+
     @Override
     public String toString(){
         return this.name + " " + this.address + " Ledige pladser: " + this.availableSpaces;

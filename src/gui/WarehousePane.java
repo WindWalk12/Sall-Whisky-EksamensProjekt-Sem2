@@ -2,19 +2,20 @@ package gui;
 
 
 import application.controller.Controller;
+import application.model.Cask;
 import application.model.StorageRack;
 import application.model.Warehouse;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class WarehousePane extends GridPane {
     private ListView<Warehouse> lvwWarehouses;
+    private final TableView<Warehouse> table = new TableView<>();
     private ListView<StorageRack> lvwStorageRacks;
 
     public WarehousePane() {
@@ -26,13 +27,17 @@ public class WarehousePane extends GridPane {
         Label lblWarehouses = new Label("Lagre");
         this.add(lblWarehouses, 0, 0);
 
-        lvwWarehouses = new ListView<>();
-        this.add(lvwWarehouses, 0, 1, 1, 7);
-        lvwWarehouses.setPrefWidth(250);
-        lvwWarehouses.setPrefHeight(300);
-        lvwWarehouses.getItems().setAll(Controller.getWarehouses());
-        ChangeListener<Warehouse> listener = (ov, oldKonference, newKonference) -> this.selectedWarehouseChanged();
-        lvwWarehouses.getSelectionModel().selectedItemProperty().addListener(listener);
+        TableColumn<Warehouse, String> name = new TableColumn<>("Navn");
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn <Warehouse, String> address = new TableColumn<>("Adresse");
+        address.setCellValueFactory(new PropertyValueFactory<>("address"));
+        TableColumn<Warehouse, Integer> availableSpaces = new TableColumn<>("Ledige pladser");
+        availableSpaces.setCellValueFactory(new PropertyValueFactory<>("availableSpaces"));
+        table.getColumns().addAll(name, address, availableSpaces);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        this.add(table, 0, 1, 1, 7);
+        ChangeListener<Warehouse> listener = (ov, oldWarehouse, newWarehouse) -> this.selectedWarehouseChanged();
+        table.getSelectionModel().selectedItemProperty().addListener(listener);
 
         lvwStorageRacks = new ListView<>();
         this.add(lvwStorageRacks, 1, 1, 1, 7);
@@ -49,14 +54,14 @@ public class WarehousePane extends GridPane {
         Button btnCreateStorageRack = new Button("Opret ny reol");
         this.add(btnCreateStorageRack, 2, 2);
         btnCreateStorageRack.setOnAction(event -> this.createStorageRackAction());
-        btnCreateStorageRack.disableProperty().bind(Bindings.isNull(lvwWarehouses.getSelectionModel().selectedItemProperty()));
+        btnCreateStorageRack.disableProperty().bind(Bindings.isNull(table.getSelectionModel().selectedItemProperty()));
 
     }
 
     // -------------------------------------------------------------------------
 
     private void selectedWarehouseChanged() {
-        Warehouse warehouse = lvwWarehouses.getSelectionModel().getSelectedItem();
+        Warehouse warehouse = table.getSelectionModel().getSelectedItem();
         if (warehouse != null) {
             lvwStorageRacks.getItems().setAll(warehouse.getStorageRacks());
         } else {
@@ -65,7 +70,7 @@ public class WarehousePane extends GridPane {
     }
 
     public void updateList() {
-        lvwWarehouses.getItems().setAll(Controller.getWarehouses());
+        table.getItems().setAll(Controller.getWarehouses());
     }
 
     // -------------------------------------------------------------------------
@@ -79,7 +84,7 @@ public class WarehousePane extends GridPane {
     }
 
     private void createStorageRackAction() {
-        CreateStorageRackWindow dia = new CreateStorageRackWindow("Opret reol", this.lvwWarehouses.getSelectionModel().getSelectedItem());
+        CreateStorageRackWindow dia = new CreateStorageRackWindow("Opret reol", this.table.getSelectionModel().getSelectedItem());
         dia.showAndWait();
         updateList();
 
