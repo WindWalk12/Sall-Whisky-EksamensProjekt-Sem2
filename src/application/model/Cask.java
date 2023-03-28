@@ -11,8 +11,8 @@ public class Cask {
     private StorageRack storageRack;
     private static int caskCounter = 0;
     private ArrayList<Distilate> distilates = new ArrayList<>();
-    private String tbwWarehouseName = "Ikke på lager";
-    private String tbwStorageRackId = "Ikke på hylde";
+    private String tbvWarehouseName = "Ikke på lager";
+    private String tbvStorageRackId = "Ikke på hylde";
 
     public Cask(String countryOfOrigin, String supplier, double volume, CaskType caskType) {
         caskCounter ++;
@@ -55,12 +55,12 @@ public class Cask {
         return storageRack;
     }
 
-    public String getTbwWarehouseName() {
-        return tbwWarehouseName;
+    public String getTbvWarehouseName() {
+        return tbvWarehouseName;
     }
 
-    public String getTbwStorageRackId() {
-        return tbwStorageRackId;
+    public String getTbvStorageRackId() {
+        return tbvStorageRackId;
     }
 
     public String getCaskType() {
@@ -70,8 +70,8 @@ public class Cask {
     public void setStorageRack(StorageRack storageRack) {
         this.storageRack = storageRack;
         if (storageRack != null) {
-            this.tbwWarehouseName = storageRack.getWarehouse().getName();
-            this.tbwStorageRackId = "Reol-" + storageRack.getId() + " " + storageRack.getKeyFromValue(this);
+            this.tbvWarehouseName = storageRack.getWarehouse().getName();
+            this.tbvStorageRackId = "Reol-" + storageRack.getId() + " " + storageRack.getKeyFromValue(this);
         }
     }
 
@@ -87,6 +87,6 @@ public class Cask {
 
     @Override
     public String toString(){
-        return this.id + ", " + this.caskType.toString() + ", " + this.tbwWarehouseName + ", " + this.tbwStorageRackId + ", " + this.volume + "L";
+        return this.id + ", " + this.caskType.toString() + ", " + this.tbvWarehouseName + ", " + this.tbvStorageRackId + ", " + this.volume + "L";
     }
 }

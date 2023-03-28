@@ -24,13 +24,13 @@ public class CaskPane extends GridPane {
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         TableColumn <Cask, String> castType = new TableColumn<>("Fadtype");
         castType.setCellValueFactory(new PropertyValueFactory<>("caskType"));
-        TableColumn<Cask, String> tbwWarehouseName = new TableColumn<>("Lager");
-        tbwWarehouseName.setCellValueFactory(new PropertyValueFactory<>("tbwWarehouseName"));
-        TableColumn<Cask, String> tbwStorageRackId = new TableColumn<>("Plads");
-        tbwStorageRackId.setCellValueFactory(new PropertyValueFactory<>("tbwStorageRackId"));
+        TableColumn<Cask, String> tbvWarehouseName = new TableColumn<>("Lager");
+        tbvWarehouseName.setCellValueFactory(new PropertyValueFactory<>("tbvWarehouseName"));
+        TableColumn<Cask, String> tbvStorageRackId = new TableColumn<>("Plads");
+        tbvStorageRackId.setCellValueFactory(new PropertyValueFactory<>("tbvStorageRackId"));
         TableColumn<Cask, Double> volume = new TableColumn<>("volume[L]");
         volume.setCellValueFactory(new PropertyValueFactory<>("volume"));
-        table.getColumns().addAll(id, castType, tbwWarehouseName, tbwStorageRackId, volume);
+        table.getColumns().addAll(id, castType, tbvWarehouseName, tbvStorageRackId, volume);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.add(table, 0, 1, 1, 7);
 

@@ -1,7 +1,6 @@
 package gui;
 
 import application.controller.Controller;
-import application.model.Cask;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,6 +37,7 @@ public class CreateMaltWindow extends Stage {
     private DatePicker dpHarvestDate, dpMaltDate;
 
     private Button btnCreateMalt, btnExit;
+    private HBox hbButtons;
 
     private Label lblError = new Label();
 
@@ -84,12 +85,14 @@ public class CreateMaltWindow extends Stage {
         // Buttons
 
         btnCreateMalt = new Button("Opret malt batch");
-        pane.add(btnCreateMalt, 0, 6);
         btnCreateMalt.setOnAction(event -> this.createMaltAction());
 
         btnExit = new Button("Luk");
-        pane.add(btnExit, 1, 6);
         btnExit.setOnAction(event -> this.exitAction());
+
+        hbButtons = new HBox(btnCreateMalt, btnExit);
+        pane.add(hbButtons,0, 6, 2, 1);
+        hbButtons.setSpacing(10);
 
         lblError.setTextFill(Color.RED);
         pane.add(lblError, 0, 7, 2, 1);
