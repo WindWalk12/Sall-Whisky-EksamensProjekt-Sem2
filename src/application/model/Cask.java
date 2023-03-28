@@ -87,6 +87,6 @@ public class Cask {
 
     @Override
     public String toString(){
-        return this.id + " " + this.caskType.toString() + " " + this.tbwWarehouseName + ", " + this.tbwStorageRackId + ", " + this.volume + "L";
+        return this.id + ", " + this.caskType.toString() + ", " + this.tbwWarehouseName + ", " + this.tbwStorageRackId + ", " + this.volume + "L";
     }
 }
