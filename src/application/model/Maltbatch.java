@@ -39,6 +39,14 @@ public class Maltbatch {
         return harvestDate;
     }
 
+    public String getFarmer() {
+        return farmer;
+    }
+
+    public LocalDate getMaltDate() {
+        return maltDate;
+    }
+
     public String toString() {
         return grainType + " " + cornField;
     }

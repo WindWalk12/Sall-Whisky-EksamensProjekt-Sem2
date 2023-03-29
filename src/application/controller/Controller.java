@@ -101,8 +101,8 @@ public class Controller {
         return maltbatch;
     }
 
-    public static WhiskyBatch createWhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType, Map<Cask, Double> casks) {
-        WhiskyBatch whiskyBatch = new WhiskyBatch(waterVolume, caskStrength, alcPrercntage, whiskyType, casks);
+    public static WhiskyBatch createWhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType, LocalDate tapped, Map<Cask, Double> casks) {
+        WhiskyBatch whiskyBatch = new WhiskyBatch(waterVolume, caskStrength, alcPrercntage, whiskyType, tapped, casks);
         Storage.addWhiskyBatch(whiskyBatch);
         for (Map.Entry<Cask, Double> map : casks.entrySet()) {
             map.getKey().removeFromContentVolume(map.getValue());
@@ -152,8 +152,10 @@ public class Controller {
         Map<Cask, Double> casks2 = new HashMap<>();
 
 
-        WhiskyBatch wb1 = Controller.createWhiskyBatch(10, false, 78, "Single cask", casks1);
-        WhiskyBatch wb2 = Controller.createWhiskyBatch(0, true, 65, "Single malt", casks2);
+        WhiskyBatch wb1 = Controller.createWhiskyBatch(10, false, 78, "Single cask", LocalDate.now(), casks1);
+        WhiskyBatch wb2 = Controller.createWhiskyBatch(0, true, 65, "Single malt", LocalDate.now(), casks2);
+
+        System.out.println(wb1.createHistoryString());
 
     }
 }

@@ -37,4 +37,16 @@ public class Distilate {
     public double getVolume() {
         return volume;
     }
+
+    public Distillation getDistillation() {
+        return distillation;
+    }
+
+    public ArrayList<Cask> getCasks() {
+        return new ArrayList<>(casks);
+    }
+
+    public LocalDate getFillingDate() {
+        return fillingDate;
+    }
 }
