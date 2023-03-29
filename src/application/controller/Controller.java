@@ -5,6 +5,8 @@ import storage.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller {
 
@@ -97,8 +99,8 @@ public class Controller {
         return maltbatch;
     }
 
-    public static WhiskyBatch createWhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType) {
-        WhiskyBatch whiskyBatch = new WhiskyBatch(waterVolume, caskStrength, alcPrercntage, whiskyType);
+    public static WhiskyBatch createWhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType, Map<Cask, Double> casks) {
+        WhiskyBatch whiskyBatch = new WhiskyBatch(waterVolume, caskStrength, alcPrercntage, whiskyType, casks);
         Storage.addWhiskyBatch(whiskyBatch);
         return whiskyBatch;
     }
@@ -120,7 +122,7 @@ public class Controller {
         Warehouse WH1 = Controller.createWarehouse("Stalden hos Lars","Morbærhaven 30");
         Warehouse WH2 = Controller.createWarehouse("Containeren", "Mortensmindevej 21");
 
-        Cask C1 = Controller.createCask("Rusland","Destilleri",10,CaskType.BOURBON);
+        Cask C1 = Controller.createCask("Rusland","Destilleri",70,CaskType.BOURBON);
         Cask C2 = Controller.createCask("Spanien","Destilleri 2",40,CaskType.SHERRY);
         Cask C3 = Controller.createCask("Portugal","Desilleri 609",15,CaskType.REDWINE);
 
@@ -135,8 +137,16 @@ public class Controller {
 
         Distillation dt1 = Controller.createDistillation(1000.5, 86.6, LocalDate.now(), LocalDate.now().plusDays(5), "Jørgen", "Ingen", "Smager allerede godt", mb1, "NM77P");
 
-        WhiskyBatch wb1 = Controller.createWhiskyBatch(0, true, 78, "Single cask");
-        WhiskyBatch wb2 = Controller.createWhiskyBatch(0, true, 65, "Single malt");
+        Controller.fillCask(LocalDate.now(), dt1, C1, 40.0);
+
+        Map<Cask, Double> casks1 = new HashMap<>();
+        casks1.put(C1, 30.0);
+
+        Map<Cask, Double> casks2 = new HashMap<>();
+
+
+        WhiskyBatch wb1 = Controller.createWhiskyBatch(0, true, 78, "Single cask", casks1);
+        WhiskyBatch wb2 = Controller.createWhiskyBatch(0, true, 65, "Single malt", casks2);
 
     }
 }
