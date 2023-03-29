@@ -36,7 +36,9 @@ public class WhiskyBatch {
 
     private void addDistilates(Map<Cask, Double> casks) {
         for (Map.Entry<Cask, Double> map : casks.entrySet()) {
-            distilates.put(map.getKey().getDistilates().get(0), map.getValue());
+            for (Distilate d : map.getKey().getDistilates()) {
+                distilates.put(d, map.getValue());
+            }
         }
 
     }
