@@ -135,5 +135,8 @@ public class Controller {
 
         Distillation dt1 = Controller.createDistillation(1000.5, 86.6, LocalDate.now(), LocalDate.now().plusDays(5), "Jørgen", "Ingen", "Smager allerede godt", mb1, "NM77P");
 
+        WhiskyBatch wb1 = Controller.createWhiskyBatch(0, true, 78, "Single cask");
+        WhiskyBatch wb2 = Controller.createWhiskyBatch(0, true, 65, "Single malt");
+
     }
 }

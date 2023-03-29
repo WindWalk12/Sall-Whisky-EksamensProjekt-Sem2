@@ -76,10 +76,6 @@ public class StartWindow extends Application {
         tabWhiskyBatchPane.setContent(whiskyPane);
         tabWhiskyBatchPane.setOnSelectionChanged(event -> whiskyPane.updateList());
 
-
-
-
-
     }
 
 }

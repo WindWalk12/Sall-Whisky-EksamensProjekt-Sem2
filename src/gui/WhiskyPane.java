@@ -29,15 +29,15 @@ public class WhiskyPane extends GridPane {
         TableColumn<WhiskyBatch, String> id = new TableColumn<>("Id");
         id.setCellValueFactory(new PropertyValueFactory<>("Id"));
         TableColumn<WhiskyBatch, Double> waterVolume = new TableColumn<>("Vand volumen");
-        waterVolume.setCellValueFactory(new PropertyValueFactory<>("Vand volumen"));
+        waterVolume.setCellValueFactory(new PropertyValueFactory<>("waterVolume"));
         TableColumn<WhiskyBatch, Double> totalVolume = new TableColumn<>("Total volumen");
-        totalVolume.setCellValueFactory(new PropertyValueFactory<>("Total volumen"));
+        totalVolume.setCellValueFactory(new PropertyValueFactory<>("totalVolume"));
         TableColumn<WhiskyBatch, Boolean> caskStrength = new TableColumn<>("Fortyndet");
-        caskStrength.setCellValueFactory(new PropertyValueFactory<>("Fortyndet"));
+        caskStrength.setCellValueFactory(new PropertyValueFactory<>("caskStrength"));
         TableColumn<WhiskyBatch, Double> alcPercentage = new TableColumn<>("Alkohol %");
-        alcPercentage.setCellValueFactory(new PropertyValueFactory<>("Alkohol %"));
+        alcPercentage.setCellValueFactory(new PropertyValueFactory<>("alcPrercntage"));
         TableColumn<WhiskyBatch, String> whiskyType = new TableColumn<>("Type");
-        whiskyType.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        whiskyType.setCellValueFactory(new PropertyValueFactory<>("whiskyType"));
         tvwWhisky.getColumns().addAll(id, waterVolume, totalVolume, caskStrength, alcPercentage, whiskyType);
         tvwWhisky.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.add(tvwWhisky, 0, 1, 1, 7);
@@ -53,7 +53,7 @@ public class WhiskyPane extends GridPane {
         btnViewHistory = new Button("Se historik");
         this.add(btnViewHistory, 1, 2);
         btnViewHistory.setOnAction(event -> this.viewHistoryAction());
-        btnViewHistory.disableProperty().bind(Bindings.isNull(tvwWhisky.getSelectionModel().selectionModeProperty()));
+        btnViewHistory.disableProperty().bind(Bindings.isNull(tvwWhisky.getSelectionModel().selectedItemProperty()));
         btnViewHistory.setMaxWidth(Double.MAX_VALUE);
 
     }
@@ -71,6 +71,8 @@ public class WhiskyPane extends GridPane {
     }
 
     private void viewHistoryAction() {
-
+        ViewHistoryWindow dia = new ViewHistoryWindow("Historik");
+        dia.showAndWait();
+        updateList();
     }
 }
