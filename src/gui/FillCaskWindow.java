@@ -79,10 +79,11 @@ public class FillCaskWindow extends Stage {
         Label lblCurrentvolume = new Label("Indeholder: " + cbxCasks.getValue().getContentVolume() + "L");
         pane.add(lblCurrentvolume, 0, 6);
 
-        Label lblvolume = new Label("Volumen[L]: Maks: " + (cbxCasks.getValue().getVolume() - cbxCasks.getValue().getContentVolume()) + "L");
+        Label lblvolume = new Label("Volumen[L]");
         pane.add(lblvolume, 0, 7);
 
         txfVolume = new TextField();
+        txfVolume.setPromptText("Maks: " + (cbxCasks.getValue().getVolume() - cbxCasks.getValue().getContentVolume()) + "L");
         pane.add(txfVolume, 0, 8);
 
 
