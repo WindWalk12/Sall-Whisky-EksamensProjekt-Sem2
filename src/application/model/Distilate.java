@@ -23,6 +23,17 @@ public class Distilate {
         }
     }
 
+    public double removeFromVolume(double amount) {
+        double currentVolume = this.volume;
+        if (amount > volume) {
+            this.volume = 0.0;
+            return currentVolume;
+        } else {
+            this.volume -= amount;
+            return amount;
+        }
+    }
+
     public double getVolume() {
         return volume;
     }

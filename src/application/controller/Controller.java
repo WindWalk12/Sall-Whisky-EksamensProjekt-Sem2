@@ -104,6 +104,10 @@ public class Controller {
     public static WhiskyBatch createWhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType, Map<Cask, Double> casks) {
         WhiskyBatch whiskyBatch = new WhiskyBatch(waterVolume, caskStrength, alcPrercntage, whiskyType, casks);
         Storage.addWhiskyBatch(whiskyBatch);
+        for (Map.Entry<Cask, Double> map : casks.entrySet()) {
+            map.getKey().removeFromContentVolume(map.getValue());
+        }
+
         return whiskyBatch;
     }
 
@@ -139,6 +143,7 @@ public class Controller {
 
         Distillation dt1 = Controller.createDistillation(1000.5, 86.6, LocalDate.now(), LocalDate.now().plusDays(5), "Jørgen", "Ingen", "Smager allerede godt", mb1, "NM77P");
 
+        Controller.fillCask(LocalDate.now(), dt1, C1, 10.0);
         Controller.fillCask(LocalDate.now(), dt1, C1, 40.0);
 
         Map<Cask, Double> casks1 = new HashMap<>();
@@ -147,7 +152,7 @@ public class Controller {
         Map<Cask, Double> casks2 = new HashMap<>();
 
 
-        WhiskyBatch wb1 = Controller.createWhiskyBatch(0, true, 78, "Single cask", casks1);
+        WhiskyBatch wb1 = Controller.createWhiskyBatch(10, false, 78, "Single cask", casks1);
         WhiskyBatch wb2 = Controller.createWhiskyBatch(0, true, 65, "Single malt", casks2);
 
     }

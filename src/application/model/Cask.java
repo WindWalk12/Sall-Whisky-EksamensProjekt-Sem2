@@ -75,6 +75,19 @@ public class Cask {
         return currentVolume;
     }
 
+    public void removeFromContentVolume(double amount) {
+        double toBeRemoved = amount;
+        if (getContentVolume() >= amount) {
+            for (Distilate d : distilates) {
+                if (toBeRemoved > 0) {
+                    toBeRemoved -= d.removeFromVolume(toBeRemoved);
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
     public void setStorageRack(StorageRack storageRack) {
         this.storageRack = storageRack;
         if (storageRack != null) {
