@@ -76,25 +76,28 @@ public class FillCaskWindow extends Stage {
         dpFillDate.setEditable(true);
         dpFillDate.setValue(LocalDate.now());
 
-        Label lblvolume = new Label("Volumen[L]");
-        pane.add(lblvolume, 0, 6);
+        Label lblCurrentvolume = new Label("Indeholder: " + cbxCasks.getValue().getContentVolume() + "L");
+        pane.add(lblCurrentvolume, 0, 6);
+
+        Label lblvolume = new Label("Volumen[L]: Maks: " + (cbxCasks.getValue().getVolume() - cbxCasks.getValue().getContentVolume()) + "L");
+        pane.add(lblvolume, 0, 7);
 
         txfVolume = new TextField();
-        pane.add(txfVolume, 0, 7);
+        pane.add(txfVolume, 0, 8);
 
 
         // Buttons
 
         btnFillCask = new Button("Fyld på fad");
-        pane.add(btnFillCask, 0, 8);
+        pane.add(btnFillCask, 0, 9);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
 
         btnExit = new Button("Luk");
-        pane.add(btnExit, 1, 9);
+        pane.add(btnExit, 1, 10);
         btnExit.setOnAction(event -> this.exitAction());
 
         lblError.setTextFill(Color.RED);
-        pane.add(lblError, 0, 10, 2, 1);
+        pane.add(lblError, 0, 11, 2, 1);
 
     }
 

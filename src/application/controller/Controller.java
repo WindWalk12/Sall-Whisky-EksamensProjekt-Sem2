@@ -54,7 +54,7 @@ public class Controller {
     public static ArrayList<Cask> getEmptyCasks() {
         ArrayList<Cask> emptyCasks = new ArrayList<>();
         for (Cask c :Storage.getCasks()) {
-            if (c.getDistilates().size() < 1) {
+            if (c.getContentVolume() < c.getVolume()) {
                 emptyCasks.add(c);
             }
         }
@@ -64,6 +64,8 @@ public class Controller {
     public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
         if (distillation.getVolumen() - volume < 0) {
             throw new RuntimeException("Der er ikke nok distilation til at fylde fadet op");
+        } else if (volume + cask.getContentVolume() > cask.getVolume()) {
+            throw new IllegalArgumentException("Der kan kun fyldes " + (cask.getVolume() - cask.getContentVolume()) + "L på fadet");
         } else {
             return distillation.fillCask(fillingDate, distillation, cask, volume);
         }

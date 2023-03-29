@@ -67,6 +67,14 @@ public class Cask {
         return caskType.toString().charAt(0) + caskType.toString().substring(1).toLowerCase();
     }
 
+    public double getContentVolume() {
+        double currentVolume = 0.0;
+        for (Distilate d : distilates) {
+            currentVolume += d.getVolume();
+        }
+        return currentVolume;
+    }
+
     public void setStorageRack(StorageRack storageRack) {
         this.storageRack = storageRack;
         if (storageRack != null) {

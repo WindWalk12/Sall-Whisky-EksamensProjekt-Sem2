@@ -30,7 +30,9 @@ public class CaskPane extends GridPane {
         tbvStorageRackId.setCellValueFactory(new PropertyValueFactory<>("tbvStorageRackId"));
         TableColumn<Cask, Double> volume = new TableColumn<>("volume[L]");
         volume.setCellValueFactory(new PropertyValueFactory<>("volume"));
-        table.getColumns().addAll(id, castType, tbvWarehouseName, tbvStorageRackId, volume);
+        TableColumn<Cask, Double> contentVolume = new TableColumn<>("Indeholder[L]");
+        contentVolume.setCellValueFactory(new PropertyValueFactory<>("contentVolume"));
+        table.getColumns().addAll(id, castType, tbvWarehouseName, tbvStorageRackId, volume, contentVolume);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.add(table, 0, 1, 1, 7);
 
