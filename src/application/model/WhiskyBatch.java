@@ -94,7 +94,7 @@ public class WhiskyBatch {
         String distilateFillingDate = String.valueOf(distilates.get(0).getFillingDate());
 
         return "Whiskyen her startede ude på den økologiske mark " + field + " som " + grainType + " Byg hos landmanden "
-                + farmer + ".\nDer er blevet " + "høstet d. " + harvestet + " og maltet d. " + maltDate +
+                + farmer + ".\nDer er blevet høstet d. " + harvestet + " og maltet d. " + maltDate +
                 ".\nHerefter er det blevet distilleret d. " + distillationStartDate + " til d. " + distillationEndDate +
                 " af " + distillationEmployee + ".\nDen har så efterfølgene lagt på lageret: " + warehouseName + " fra d. " +
                 distilateFillingDate + " til d. " + this.tapped + ".\nTil sidst har vi så med en " + this.whiskyType +
