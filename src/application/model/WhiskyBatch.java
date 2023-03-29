@@ -1,7 +1,7 @@
 package application.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 
 public class WhiskyBatch {
@@ -12,7 +12,7 @@ public class WhiskyBatch {
     private double alcPrercntage;
     private String whiskyType;
     private static int batchCounter = 0;
-    Map<Distilate, Double> distilates = new HashMap<>();
+    ArrayList<Distilate> distilates = new ArrayList<>();
     ArrayList<WhiskyBottle> whiskyBottles = new ArrayList<>();
 
     public WhiskyBatch(double waterVolume, boolean caskStrength, double alcPercentage, String whiskyType, Map<Cask, Double> casks) {
@@ -20,25 +20,23 @@ public class WhiskyBatch {
         this.id = String.valueOf(batchCounter);
         this.waterVolume = waterVolume;
         addDistilates(casks);
-        this.totalVolume = calcTotalVolume();
+        this.totalVolume = calcTotalVolume(casks);
         this.caskStrength = caskStrength;
         this.alcPrercntage = alcPercentage;
         this.whiskyType = whiskyType;
     }
 
-    private double calcTotalVolume() {
+    private double calcTotalVolume(Map<Cask, Double> casks) {
         double res = 0.0;
-        for (Map.Entry<Distilate, Double> map : distilates.entrySet()) {
-            res += map.getValue();
+        for (Double d : casks.values()) {
+            res += d;
         }
         return res + waterVolume;
     }
 
     private void addDistilates(Map<Cask, Double> casks) {
         for (Map.Entry<Cask, Double> map : casks.entrySet()) {
-            for (Distilate d : map.getKey().getDistilates()) {
-                distilates.put(d, map.getValue());
-            }
+            Collections.addAll(map.getKey().getDistilates());
         }
 
     }
