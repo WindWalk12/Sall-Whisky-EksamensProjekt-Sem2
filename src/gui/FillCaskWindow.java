@@ -33,7 +33,7 @@ public class FillCaskWindow extends Stage {
 
     private Distillation distillation;
 
-    private TextField txfSelectedDistillation;
+    private TextField txfSelectedDistillation, txfVolume;
 
     private ComboBox<Cask> cbxCasks;
 
@@ -76,19 +76,25 @@ public class FillCaskWindow extends Stage {
         dpFillDate.setEditable(true);
         dpFillDate.setValue(LocalDate.now());
 
+        Label lblvolume = new Label("Volumen");
+        pane.add(lblvolume, 0, 6);
+
+        txfVolume = new TextField();
+        pane.add(txfVolume, 0, 7);
+
 
         // Buttons
 
         btnFillCask = new Button("Fyld på fad");
-        pane.add(btnFillCask, 0, 6);
+        pane.add(btnFillCask, 0, 8);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
 
         btnExit = new Button("Luk");
-        pane.add(btnExit, 1, 6);
+        pane.add(btnExit, 1, 9);
         btnExit.setOnAction(event -> this.exitAction());
 
         lblError.setTextFill(Color.RED);
-        pane.add(lblError, 0, 7, 2, 1);
+        pane.add(lblError, 0, 10, 2, 1);
 
     }
 
@@ -96,7 +102,8 @@ public class FillCaskWindow extends Stage {
         try {
             LocalDate fillingDate = dpFillDate.getValue();
             Cask cask = cbxCasks.getValue();
-            Controller.fillCask(fillingDate, distillation, cask);
+            String volume = txfVolume.getText();
+            Controller.fillCask(fillingDate, distillation, cask, Integer.valueOf(volume));
             this.hide();
         } catch (RuntimeException e) {
             lblError.setText(e.getMessage());

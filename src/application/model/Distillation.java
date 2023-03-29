@@ -96,10 +96,10 @@ public class Distillation {
         return spiritBatchNr;
     }
 
-    public Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask){
-        Distilate distilate = new Distilate(fillingDate, distillation, cask);
+    public Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask, double volume){
+        Distilate distilate = new Distilate(fillingDate, distillation, cask, volume);
         distilates.add(distilate);
-        this.volumen -= cask.getVolume();
+        this.volumen -= volume;
         return distilate;
     }
 

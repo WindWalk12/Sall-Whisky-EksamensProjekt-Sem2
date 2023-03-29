@@ -7,10 +7,12 @@ public class Distilate {
     private final LocalDate fillingDate;
     private final Distillation distillation;
     private ArrayList<Cask> casks = new ArrayList<>();
+    private double volume;
 
-    public Distilate(LocalDate fillingDate, Distillation distillation, Cask cask) {
+    public Distilate(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
         this.fillingDate = fillingDate;
         this.distillation = distillation;
+        this.volume = volume;
         addCask(cask);
         cask.addDistilate(this);
     }
@@ -19,5 +21,9 @@ public class Distilate {
         if (!casks.contains(cask)) {
             casks.add(cask);
         }
+    }
+
+    public double getVolume() {
+        return volume;
     }
 }

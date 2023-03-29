@@ -1,5 +1,7 @@
 package application.model;
 
+import java.util.ArrayList;
+
 public class WhiskyBatch {
     private String id;
     private double waterVolume;
@@ -8,15 +10,24 @@ public class WhiskyBatch {
     private double alcPrercntage;
     private String whiskyType;
     private static int batchCounter = 0;
+    ArrayList<Distilate> distilates = new ArrayList<>();
 
-    public WhiskyBatch(double waterVolume, double totalVolume, boolean caskStrength, double alcPrercntage, String whiskyType) {
+    public WhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType) {
         batchCounter++;
         this.id = String.valueOf(batchCounter);
         this.waterVolume = waterVolume;
-        this.totalVolume = totalVolume;
+        this.totalVolume = calcTotalVolume();
         this.caskStrength = caskStrength;
         this.alcPrercntage = alcPrercntage;
         this.whiskyType = whiskyType;
+    }
+
+    private double calcTotalVolume() {
+        double res = 0.0;
+        for (Distilate d :distilates) {
+            res += d.getVolume();
+        }
+        return res + waterVolume;
     }
 
     public String getId() {

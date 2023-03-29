@@ -59,11 +59,11 @@ public class Controller {
         return emptyCasks;
     }
 
-    public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask) {
-        if (distillation.getVolumen() - cask.getVolume() < 0) {
+    public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
+        if (distillation.getVolumen() - volume < 0) {
             throw new RuntimeException("Der er ikke nok distilation til at fylde fadet op");
         } else {
-            return distillation.fillCask(fillingDate, distillation, cask);
+            return distillation.fillCask(fillingDate, distillation, cask, volume);
         }
     }
 
@@ -95,6 +95,12 @@ public class Controller {
         Maltbatch maltbatch = new Maltbatch(cornField,grainType,harvestDate,farmer,maltDate);
         Storage.addMaltbatch(maltbatch);
         return maltbatch;
+    }
+
+    public static WhiskyBatch createWhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType) {
+        WhiskyBatch whiskyBatch = new WhiskyBatch(waterVolume, caskStrength, alcPrercntage, whiskyType);
+        Storage.addWhiskyBatch(whiskyBatch);
+        return whiskyBatch;
     }
 
     public static ArrayList<Maltbatch> getMaltbatches(){

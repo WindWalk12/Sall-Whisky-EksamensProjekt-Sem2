@@ -1,9 +1,6 @@
 package storage;
 
-import application.model.Cask;
-import application.model.Distillation;
-import application.model.Maltbatch;
-import application.model.Warehouse;
+import application.model.*;
 
 import java.util.ArrayList;
 
@@ -16,6 +13,8 @@ public class Storage {
     private static ArrayList<Maltbatch> maltbatches = new ArrayList<>();
 
     private static ArrayList<Distillation> distillations = new ArrayList<>();
+
+    private static ArrayList<WhiskyBatch> whiskyBatches = new ArrayList<>();
 
     //--------------------------------------------------------------------------------
     // Warehouse
@@ -71,5 +70,19 @@ public class Storage {
 
     public static void removeDistillation(Distillation distillation) {
         distillations.remove(distillation);
+    }
+
+    //--------------------------------------------------------------------------------
+    // WhiskyBatch
+    public static ArrayList<WhiskyBatch> getWhiskyBatches() {
+        return new ArrayList<>(whiskyBatches);
+    }
+
+    public static void addWhiskyBatch(WhiskyBatch whiskyBatch) {
+        whiskyBatches.add(whiskyBatch);
+    }
+
+    public static void removeWhiskyBatch(WhiskyBatch whiskyBatch) {
+        whiskyBatches.remove(whiskyBatch);
     }
 }
