@@ -15,14 +15,14 @@ public class WhiskyBatch {
     Map<Distilate, Double> distilates = new HashMap<>();
     ArrayList<WhiskyBottle> whiskyBottles = new ArrayList<>();
 
-    public WhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType, Map<Cask, Double> casks) {
+    public WhiskyBatch(double waterVolume, boolean caskStrength, double alcPercentage, String whiskyType, Map<Cask, Double> casks) {
         batchCounter++;
         this.id = String.valueOf(batchCounter);
         this.waterVolume = waterVolume;
         addDistilates(casks);
         this.totalVolume = calcTotalVolume();
         this.caskStrength = caskStrength;
-        this.alcPrercntage = alcPrercntage;
+        this.alcPrercntage = alcPercentage;
         this.whiskyType = whiskyType;
     }
 
