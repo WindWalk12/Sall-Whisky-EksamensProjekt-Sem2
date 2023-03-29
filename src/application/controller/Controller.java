@@ -107,6 +107,10 @@ public class Controller {
         return Storage.getMaltbatches();
     }
 
+    public static ArrayList<WhiskyBatch> getWhiskyBatch() {
+        return Storage.getWhiskyBatches();
+    }
+
 
     public static void initStorage(){
         Warehouse WH1 = Controller.createWarehouse("Stalden hos Lars","Morbærhaven 30");

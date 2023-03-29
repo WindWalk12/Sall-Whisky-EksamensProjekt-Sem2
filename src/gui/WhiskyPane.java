@@ -61,7 +61,7 @@ public class WhiskyPane extends GridPane {
     // -------------------------------------------------------------------------
 
     public void updateList() {
-   //     tvwWhisky.getItems().setAll(Controller.getWhiskyBatch);
+        tvwWhisky.getItems().setAll(Controller.getWhiskyBatch());
     }
 
     private void createWhiskyAction() {
