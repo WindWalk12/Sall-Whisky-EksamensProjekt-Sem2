@@ -11,6 +11,7 @@ public class WhiskyBatch {
     private String whiskyType;
     private static int batchCounter = 0;
     ArrayList<Distilate> distilates = new ArrayList<>();
+    ArrayList<WhiskyBottle> whiskyBottles = new ArrayList<>();
 
     public WhiskyBatch(double waterVolume, boolean caskStrength, double alcPrercntage, String whiskyType) {
         batchCounter++;
@@ -28,6 +29,14 @@ public class WhiskyBatch {
             res += d.getVolume();
         }
         return res + waterVolume;
+    }
+
+    public void createWhiskyBottles() {
+        int numOfBottles = (int)Math.floor(this.totalVolume*100/70);
+        for (int i = 0; i < numOfBottles; i++) {
+            WhiskyBottle wb = new WhiskyBottle(this.id + "-" + i);
+            whiskyBottles.add(wb);
+        }
     }
 
     public String getId() {

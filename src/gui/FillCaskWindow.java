@@ -76,7 +76,7 @@ public class FillCaskWindow extends Stage {
         dpFillDate.setEditable(true);
         dpFillDate.setValue(LocalDate.now());
 
-        Label lblvolume = new Label("Volumen");
+        Label lblvolume = new Label("Volumen[L]");
         pane.add(lblvolume, 0, 6);
 
         txfVolume = new TextField();

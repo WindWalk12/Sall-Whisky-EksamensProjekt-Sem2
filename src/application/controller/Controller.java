@@ -103,6 +103,10 @@ public class Controller {
         return whiskyBatch;
     }
 
+    public static void createWhiskyBottles(WhiskyBatch whiskyBatch) {
+        whiskyBatch.createWhiskyBottles();
+    }
+
     public static ArrayList<Maltbatch> getMaltbatches(){
         return Storage.getMaltbatches();
     }
