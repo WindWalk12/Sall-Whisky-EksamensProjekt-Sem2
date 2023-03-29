@@ -18,4 +18,28 @@ public class WhiskyBatch {
         this.alcPrercntage = alcPrercntage;
         this.whiskyType = whiskyType;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public double getWaterVolume() {
+        return waterVolume;
+    }
+
+    public double getTotalVolume() {
+        return totalVolume;
+    }
+
+    public boolean isCaskStrength() {
+        return caskStrength;
+    }
+
+    public double getAlcPrercntage() {
+        return alcPrercntage;
+    }
+
+    public String getWhiskyType() {
+        return whiskyType;
+    }
 }
