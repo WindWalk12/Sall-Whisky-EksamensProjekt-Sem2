@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -45,6 +46,8 @@ public class FillCaskWindow extends Stage {
 
     private Label lblError = new Label();
     private Label lblCurrentvolume;
+
+    private HBox hboxBtn;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -95,15 +98,17 @@ public class FillCaskWindow extends Stage {
         // Buttons
 
         btnFillCask = new Button("Fyld på fad");
-        pane.add(btnFillCask, 0, 9);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
 
         btnExit = new Button("Luk");
-        pane.add(btnExit, 1, 10);
         btnExit.setOnAction(event -> this.exitAction());
 
+        hboxBtn = new HBox(btnFillCask, btnExit);
+        hboxBtn.setSpacing(10);
+        pane.add(hboxBtn, 0, 9);
+
         lblError.setTextFill(Color.RED);
-        pane.add(lblError, 0, 11, 2, 1);
+        pane.add(lblError, 0, 10, 2, 1);
 
     }
 
