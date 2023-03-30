@@ -44,7 +44,7 @@ public class CreateWhiskyBatchWindow extends Stage {
         pane.setVgap(10);
         pane.setGridLinesVisible(false);
 
-        // Textfields, combobox and labels
+        // Textfields, checkbox and labels
 
         lblId = new Label("Id");
         pane.add(lblId, 0, 0);
