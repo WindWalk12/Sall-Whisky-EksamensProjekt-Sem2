@@ -91,10 +91,13 @@ public class Cask {
     }
 
     public LocalDate getNewestDate() {
-        LocalDate newestDate = LocalDate.MIN;
-        for (Distilate d : distilates) {
-            if (newestDate.isBefore(d.getFillingDate())) {
-                newestDate = d.getFillingDate();
+        LocalDate newestDate = LocalDate.MAX;
+        if (distilates.size() > 0) {
+            newestDate = LocalDate.MIN;
+            for (Distilate d : distilates) {
+                if (newestDate.isBefore(d.getFillingDate())) {
+                    newestDate = d.getFillingDate();
+                }
             }
         }
         return newestDate;

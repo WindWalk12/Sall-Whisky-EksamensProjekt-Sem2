@@ -64,7 +64,7 @@ public class Controller {
     public static ArrayList<Cask> getThreeYearOldCasks() {
         ArrayList<Cask> ThreeYearOldCasks = new ArrayList<>();
         for (Cask c :Storage.getCasks()) {
-            if (c.getNewestDate().compareTo(LocalDate.now().minusYears(3)) > -1) {
+            if (c.getNewestDate().compareTo(LocalDate.now().minusYears(3)) < -1) {
                 ThreeYearOldCasks.add(c);
             }
         }

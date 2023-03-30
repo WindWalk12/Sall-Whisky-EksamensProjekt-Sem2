@@ -3,6 +3,8 @@ package gui;
 import application.controller.Controller;
 import application.model.Cask;
 import application.model.Distillation;
+import application.model.Warehouse;
+import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -42,6 +44,7 @@ public class FillCaskWindow extends Stage {
     private Button btnFillCask, btnExit;
 
     private Label lblError = new Label();
+    private Label lblCurrentvolume;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -67,6 +70,8 @@ public class FillCaskWindow extends Stage {
         pane.add(cbxCasks, 0, 3);
         cbxCasks.getItems().setAll(Controller.getEmptyCasks());
         cbxCasks.getSelectionModel().select(0);
+        ChangeListener<Cask> listener = (ov, oldCask, newCask) -> this.selectedCaskChanged();
+        cbxCasks.getSelectionModel().selectedItemProperty().addListener(listener);
 
         Label lblFillDate = new Label("Påfyldnings dato");
         pane.add(lblFillDate, 0, 4);
@@ -76,7 +81,7 @@ public class FillCaskWindow extends Stage {
         dpFillDate.setEditable(true);
         dpFillDate.setValue(LocalDate.now());
 
-        Label lblCurrentvolume = new Label("Indeholder: " + cbxCasks.getValue().getContentVolume() + "L");
+        lblCurrentvolume = new Label("Indeholder: " + cbxCasks.getValue().getContentVolume() + "L");
         pane.add(lblCurrentvolume, 0, 6);
 
         Label lblvolume = new Label("Volumen[L]");
@@ -112,6 +117,11 @@ public class FillCaskWindow extends Stage {
         } catch (RuntimeException e) {
             lblError.setText(e.getMessage());
         }
+    }
+
+    private void selectedCaskChanged() {
+        lblCurrentvolume.setText("Indeholder: " + cbxCasks.getValue().getContentVolume() + "L");
+        txfVolume.setPromptText("Maks: " + (cbxCasks.getValue().getVolume() - cbxCasks.getValue().getContentVolume()) + "L");
     }
     private void exitAction() {
         this.hide();
