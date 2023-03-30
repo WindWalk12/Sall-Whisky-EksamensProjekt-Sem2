@@ -71,7 +71,7 @@ public class CreateCaskWindow extends Stage {
         pane.add(btnOK,0,4);
         btnOK.setOnAction(event -> this.okAction());
 
-        btnCancel = new Button("Annullere");
+        btnCancel = new Button("Luk");
         pane.add(btnCancel,1,4);
         btnCancel.setOnAction(event -> this.cancelAction());
 
