@@ -89,16 +89,17 @@ public class WhiskyBatch {
             caskInfoSet.addAll(d.getCasks());
         }
         ArrayList<Cask> caskInfo = new ArrayList<>(caskInfoSet);
+        String caskType = caskInfo.get(0).getCaskType();
 
         // Distilate info
         String distilateFillingDate = String.valueOf(distilates.get(0).getFillingDate());
 
-        return "Whiskyen her startede ude på den økologiske mark " + field + " som " + grainType + " Byg hos landmanden "
-                + farmer + ".\nDer er blevet høstet d. " + harvestet + " og maltet d. " + maltDate +
-                ".\nHerefter er det blevet distilleret d. " + distillationStartDate + " til d. " + distillationEndDate +
-                " af " + distillationEmployee + ".\nDen har så efterfølgene lagt på lageret: " + warehouseName + " fra d. " +
-                distilateFillingDate + " til d. " + this.tapped + ".\nTil sidst har vi så med en " + this.whiskyType +
-                " at gøre på " + this.alcPrercntage + "% alkohol.\nDer er lavet " + (int)Math.floor(this.totalVolume*100/70) + " flasker whisky.";
+        return "Whiskyen her startede som byg af sorten " + grainType + ", på den økologiske mark " + field + " hos landmanden "
+                + farmer + ".\nByggen blev høstet d. " + harvestet + " og derefter maltet d. " + maltDate +
+                ".\nHerefter blev det destilleret med vand, fra en begravet dal under Sall,  d. " + distillationStartDate + " til d. " + distillationEndDate +
+                " af " + distillationEmployee + ".\nEfterfølgende har destillatet lagret i et fad af " + caskType + ", på lageret: " + warehouseName + " fra d. " +
+                distilateFillingDate + " til d. " + this.tapped + ".\nVi har at gøre med en " + this.whiskyType +
+                " på " + this.alcPrercntage + "% alkohol.\nWhiskyen er blevet hældt på " + (int)Math.floor(this.totalVolume*100/70) + " flasker.";
     }
 
     public String getId() {

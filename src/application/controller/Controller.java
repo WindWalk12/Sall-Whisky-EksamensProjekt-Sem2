@@ -151,7 +151,7 @@ public class Controller {
 
 
     public static void initStorage(){
-        Warehouse WH1 = Controller.createWarehouse("Stalden hos Lars","Morbærhaven 30");
+        Warehouse WH1 = Controller.createWarehouse("Stalden","Morbærhaven 30");
         Warehouse WH2 = Controller.createWarehouse("Containeren", "Mortensmindevej 21");
 
         Cask C1 = Controller.createCask("Rusland","Destilleri",70,CaskType.BOURBON);
@@ -177,6 +177,7 @@ public class Controller {
         casks1.put(C1, 30.0);
 
         Map<Cask, Double> casks2 = new HashMap<>();
+        casks2.put(C4, 90.0);
 
 
         WhiskyBatch wb1 = Controller.createWhiskyBatch(10, false, 78, "Single cask", LocalDate.now(), casks1);
