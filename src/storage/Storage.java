@@ -88,12 +88,5 @@ public class Storage {
         whiskyBatches.remove(whiskyBatch);
     }
 
-    //--------------------------------------------------------------------------------
-    // WhiskyBottle
 
-    public static ArrayList<WhiskyBottle> getWhiskyBottles() { return new ArrayList<>(whiskyBottles); }
-
-    public static void addWhiskyBottle(WhiskyBottle whiskyBottle) { whiskyBottles.add(whiskyBottle); }
-
-    public static void removeWhiskyBottle(WhiskyBottle whiskyBottle) { whiskyBottles.remove(whiskyBottle); }
 }

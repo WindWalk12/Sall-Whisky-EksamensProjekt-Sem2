@@ -1,7 +1,6 @@
 package gui;
 
 import application.controller.Controller;
-import application.model.WhiskyBottle;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -76,13 +75,6 @@ public class StartWindow extends Application {
         WhiskyPane whiskyPane = new WhiskyPane();
         tabWhiskyBatchPane.setContent(whiskyPane);
         tabWhiskyBatchPane.setOnSelectionChanged(event -> whiskyPane.updateList());
-
-        Tab tabWhiskyBottlePane = new Tab("Whisky flasker");
-        tabPane.getTabs().add(tabWhiskyBottlePane);
-
-        BottlePane bottlePane = new BottlePane();
-        tabWhiskyBottlePane.setContent(bottlePane);
-        tabWhiskyBottlePane.setOnSelectionChanged(event -> bottlePane.updateList());
 
     }
 

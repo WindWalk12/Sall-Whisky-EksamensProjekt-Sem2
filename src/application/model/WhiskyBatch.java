@@ -45,7 +45,7 @@ public class WhiskyBatch {
     public void createWhiskyBottles() {
         int numOfBottles = (int)Math.floor(this.totalVolume*100/70);
         for (int i = 0; i < numOfBottles; i++) {
-            WhiskyBottle wb = new WhiskyBottle(this.id + "-" + i);
+            WhiskyBottle wb = new WhiskyBottle("" + (i + 1));
             whiskyBottles.add(wb);
         }
     }
@@ -124,4 +124,9 @@ public class WhiskyBatch {
     public String getWhiskyType() {
         return whiskyType;
     }
+
+    public ArrayList<WhiskyBottle> getWhiskyBottles() {
+        return new ArrayList<>(whiskyBottles);
+    }
+
 }

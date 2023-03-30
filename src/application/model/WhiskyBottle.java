@@ -8,4 +8,16 @@ public class WhiskyBottle {
     public WhiskyBottle(String id) {
         this.id = id;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public static int getBottleCount() {
+        return bottleCount;
+    }
 }

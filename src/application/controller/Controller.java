@@ -137,9 +137,17 @@ public class Controller {
         return whiskyBatch.createHistoryString();
     }
 
-    public static ArrayList<WhiskyBottle> getWhiskyBottles() {
-        return Storage.getWhiskyBottles();
+
+    public static ArrayList<WhiskyBottle> getWhiskyBottles(WhiskyBatch whiskyBatch) {
+        ArrayList<WhiskyBottle> whiskyBottles = new ArrayList<>();
+
+        for (WhiskyBottle whiskyBottle : whiskyBatch.getWhiskyBottles()) {
+            whiskyBottles.add(whiskyBottle);
+        }
+        return whiskyBottles;
     }
+
+
 
 
     public static void initStorage(){

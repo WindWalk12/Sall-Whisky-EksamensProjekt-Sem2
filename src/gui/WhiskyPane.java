@@ -14,7 +14,7 @@ public class WhiskyPane extends GridPane {
 
     private Alert alert;
 
-    private Button btnCreateWhiskyBatch, btnViewHistory, btnFillBottle;
+    private Button btnCreateWhiskyBatch, btnViewHistory, btnFillBottle, btnViewBottles;
 
     public WhiskyPane() {
         this.setPadding(new Insets(20));
@@ -61,6 +61,10 @@ public class WhiskyPane extends GridPane {
         btnFillBottle.disableProperty().bind(Bindings.isNull(tvwWhisky.getSelectionModel().selectedItemProperty()));
         btnFillBottle.setMaxWidth(Double.MAX_VALUE);
 
+        btnViewBottles = new Button("Se flasker");
+        this.add(btnViewBottles, 1, 4);
+        btnViewBottles.setOnAction(event -> this.viewBottlesAction());
+        btnViewBottles.setMaxWidth(Double.MAX_VALUE);
     }
 
     // -------------------------------------------------------------------------
@@ -83,9 +87,16 @@ public class WhiskyPane extends GridPane {
 
     private void fillBottleAction() {
         Controller.createWhiskyBottles(tvwWhisky.getSelectionModel().getSelectedItem());
+        int antal = (int)Math.floor(tvwWhisky.getSelectionModel().getSelectedItem().getTotalVolume()*100/70);
         alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Whisky er fyldt på flasker");
+        alert.setContentText("Whisky er fyldt på " + antal + " flasker");
         alert.showAndWait();
+        updateList();
+    }
+
+    private void viewBottlesAction() {
+        ViewBottlesWindow dia = new ViewBottlesWindow("Flasker", tvwWhisky.getSelectionModel().getSelectedItem());
+        dia.showAndWait();
         updateList();
     }
 }
