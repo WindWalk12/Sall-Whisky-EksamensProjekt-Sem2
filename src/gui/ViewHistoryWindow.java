@@ -1,5 +1,6 @@
 package gui;
 
+import application.controller.Controller;
 import application.model.WhiskyBatch;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -53,7 +54,7 @@ public class ViewHistoryWindow extends Stage {
         pane.add(lblHistory, 0, 0);
         txaHistory = new TextArea();
         pane.add(txaHistory, 0, 1);
-        txaHistory.setText(whiskyBatch.createHistoryString());
+        txaHistory.setText(Controller.createHistoryString(whiskyBatch));
 
         // Buttons
 

@@ -123,6 +123,10 @@ public class Controller {
         return Storage.getWhiskyBatches();
     }
 
+    public static String createHistoryString(WhiskyBatch whiskyBatch) {
+        return whiskyBatch.createHistoryString();
+    }
+
 
     public static void initStorage(){
         Warehouse WH1 = Controller.createWarehouse("Stalden hos Lars","Morbærhaven 30");
