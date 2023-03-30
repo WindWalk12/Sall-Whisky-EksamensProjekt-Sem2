@@ -64,7 +64,7 @@ public class Controller {
     public static ArrayList<Cask> getThreeYearOldCasks() {
         ArrayList<Cask> ThreeYearOldCasks = new ArrayList<>();
         for (Cask c :Storage.getCasks()) {
-            if (c.getNewestDate().compareTo(LocalDate.now().plusYears(3)) > -1) {
+            if (c.getNewestDate().compareTo(LocalDate.now().minusYears(3)) > -1) {
                 ThreeYearOldCasks.add(c);
             }
         }
@@ -149,13 +149,13 @@ public class Controller {
         Cask C1 = Controller.createCask("Rusland","Destilleri",70,CaskType.BOURBON);
         Cask C2 = Controller.createCask("Spanien","Destilleri 2",40,CaskType.SHERRY);
         Cask C3 = Controller.createCask("Portugal","Desilleri 609",15,CaskType.REDWINE);
+        Cask C4 = Controller.createCask("USA", "Destilleri freedom", 100, CaskType.RUM);
 
         StorageRack SR1 = WH1.createStorageRack(3,3);
         StorageRack SR2 = WH2.createStorageRack(6,5);
 
         putCask(SR1,2,2,C1);
-        removeCask(SR1,2,2,C1);
-        putCask(SR1,2,2,C1);
+        putCask(SR2, 1,1, C4);
 
         Maltbatch mb1 = Controller.createMaltbatch("Mosevang", "Evergreen", LocalDate.now(), "Lars", LocalDate.now().plusDays(5));
 
@@ -163,6 +163,7 @@ public class Controller {
 
         Controller.fillCask(LocalDate.now(), dt1, C1, 10.0);
         Controller.fillCask(LocalDate.now(), dt1, C1, 40.0);
+        Controller.fillCask(LocalDate.of(2020, 01, 01), dt1, C4, 90.0);
 
         Map<Cask, Double> casks1 = new HashMap<>();
         casks1.put(C1, 30.0);

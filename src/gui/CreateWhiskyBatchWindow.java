@@ -9,9 +9,9 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import storage.Storage;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CreateWhiskyBatchWindow extends Stage {
 
@@ -34,13 +34,19 @@ public class CreateWhiskyBatchWindow extends Stage {
 
     private DatePicker dpTapped;
 
-    private Button btnCreateBatch, btnCancel;
+    private Button btnCreateBatch, btnCancel, btnPlus;
 
     private Label lblId, lblWaterVolume, lblTotalVolume, lblAlcPercentage, lblWhiskyType, lblCaskStrength, lblTapped, lblcask;
 
     private Label lblError = new Label();
 
     private ComboBox<Cask> cbxCasks;
+
+    ArrayList<ComboBox> comboBoxes = new ArrayList<>();
+
+    private int index = 7;
+
+    private int numberOf = 1;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -92,15 +98,20 @@ public class CreateWhiskyBatchWindow extends Stage {
         pane.add(cbxCasks, 1, 7);
         cbxCasks.getItems().setAll(Controller.getThreeYearOldCasks());
 
+
         // Buttons
 
+        btnPlus = new Button("+");
+        pane.add(btnPlus, 1, index + 1);
+        btnPlus.setOnAction(event -> this.addNewComboBox(pane));
+
         btnCreateBatch = new Button("Opret batch");
-        pane.add(btnCreateBatch, 0, 8);
+        pane.add(btnCreateBatch, 0, index + 2);
         btnCreateBatch.setMaxWidth(Double.MAX_VALUE);
         btnCreateBatch.setOnAction(event -> this.createBatchAction());
 
         btnCancel = new Button("Luk");
-        pane.add(btnCancel, 1, 8);
+        pane.add(btnCancel, 1, index + 2);
         btnCancel.setOnAction(event -> this.cancelAction());
 
     }
@@ -131,4 +142,21 @@ public class CreateWhiskyBatchWindow extends Stage {
 
     }
 
+    public void addNewComboBox(GridPane pane) {
+        index++;
+        numberOf++;
+        Label lbl = new Label("Cask" + numberOf);
+        pane.add(lbl, 0, index);
+        ComboBox<Cask> cb = new ComboBox<>();
+        cb.getItems().setAll(Controller.getThreeYearOldCasks());
+        pane.add(cb, 1, index);
+        comboBoxes.add(cb);
+        pane.getChildren().remove(btnPlus);
+        pane.getChildren().remove(btnCreateBatch);
+        pane.getChildren().remove(btnCancel);
+        pane.add(btnPlus, 1, index + 1);
+        pane.add(btnCreateBatch, 0, index + 2);
+        pane.add(btnCancel, 1, index + 2);
+        sizeToScene();
+    }
 }
