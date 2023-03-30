@@ -22,8 +22,8 @@ public class WhiskyPane extends GridPane {
         this.setVgap(10);
         this.setGridLinesVisible(false);
 
-        Label lblCasks = new Label("Whisky");
-        this.add(lblCasks, 0, 0);
+        Label lblWhisky = new Label("Whisky");
+        this.add(lblWhisky, 0, 0);
 
         TableColumn<WhiskyBatch, String> id = new TableColumn<>("Id");
         id.setCellValueFactory(new PropertyValueFactory<>("Id"));
