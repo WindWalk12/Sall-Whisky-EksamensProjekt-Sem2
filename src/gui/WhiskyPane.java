@@ -76,7 +76,7 @@ public class WhiskyPane extends GridPane {
     }
 
     private void viewHistoryAction() {
-        ViewHistoryWindow dia = new ViewHistoryWindow("Historik");
+        ViewHistoryWindow dia = new ViewHistoryWindow("Historik", tvwWhisky.getSelectionModel().getSelectedItem());
         dia.showAndWait();
         updateList();
     }

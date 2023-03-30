@@ -32,16 +32,18 @@ public class DistillationPane extends GridPane {
 
         // Buttons
 
+        Button btnCreateDistillation = new Button("Opret destillation");
+        this.add(btnCreateDistillation, 1, 1);
+        btnCreateDistillation.setOnAction(event -> this.createDistillationAction());
+        btnCreateDistillation.setMaxWidth(Double.MAX_VALUE);
+
         Button btnFillCask = new Button("Fyld på fad");
-        this.add(btnFillCask, 1, 1);
+        this.add(btnFillCask, 1, 2);
         btnFillCask.setOnAction(event -> this.fillCaskAction());
         btnFillCask.disableProperty().bind(Bindings.isNull(table.getSelectionModel().selectedItemProperty()));
         btnFillCask.setMaxWidth(Double.MAX_VALUE);
 
-        Button btnCreateDistillation = new Button("Opret destillation");
-        this.add(btnCreateDistillation, 1, 2);
-        btnCreateDistillation.setOnAction(event -> this.createDistillationAction());
-        btnCreateDistillation.setMaxWidth(Double.MAX_VALUE);
+
     }
 
     private void createDistillationAction() {

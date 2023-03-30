@@ -28,7 +28,7 @@ public class CreateWhiskyBatchWindow extends Stage {
 
     private TextField txfId, txfWaterVolume, txfTotalVolume, txfAlcPercentage, txfWhiskyType;
 
-    private ComboBox<Boolean> cbxCaskStrength;
+    private CheckBox cbxCaskStrength;
 
     private DatePicker dpTapped;
 
@@ -56,7 +56,7 @@ public class CreateWhiskyBatchWindow extends Stage {
         txfWaterVolume = new TextField();
         pane.add(txfWaterVolume, 1, 1);
 
-        lblAlcPercentage = new Label("Alkohol proccent");
+        lblAlcPercentage = new Label("Alkohol procent");
         pane.add(lblAlcPercentage, 0, 2);
         txfAlcPercentage = new TextField();
         pane.add(txfAlcPercentage, 1, 2);
@@ -73,8 +73,7 @@ public class CreateWhiskyBatchWindow extends Stage {
 
         lblCaskStrength = new Label("Cask strength");
         pane.add(lblCaskStrength, 0, 5);
-        cbxCaskStrength = new ComboBox<>();
-        //cbxCaskStrength.setItems();
+        cbxCaskStrength = new CheckBox();
         pane.add(cbxCaskStrength, 1, 5);
 
         lblTapped = new Label("Tapnings dato");
@@ -85,8 +84,9 @@ public class CreateWhiskyBatchWindow extends Stage {
 
         // Buttons
 
-        btnCreateBatch = new Button("Opret whisky batch");
+        btnCreateBatch = new Button("Opret batch");
         pane.add(btnCreateBatch, 0, 7);
+        btnCreateBatch.setMaxWidth(Double.MAX_VALUE);
         btnCreateBatch.setOnAction(event -> this.createBatchAction());
 
         btnCancel = new Button("Luk");
@@ -100,14 +100,14 @@ public class CreateWhiskyBatchWindow extends Stage {
     }
 
     private void createBatchAction() {
-        if (!txfWhiskyType.getText().trim().isEmpty() && !txfId.getText().trim().isEmpty() && !txfWaterVolume.getText().trim().isEmpty() && !txfTotalVolume.getText().trim().isEmpty() && !txfAlcPercentage.getText().trim().isEmpty() && !cbxCaskStrength.getItems().isEmpty()) {
+        if (!txfWhiskyType.getText().trim().isEmpty() && !txfId.getText().trim().isEmpty() && !txfWaterVolume.getText().trim().isEmpty() && !txfTotalVolume.getText().trim().isEmpty() && !txfAlcPercentage.getText().trim().isEmpty()) {
             try {
                 String whiskyType = txfWhiskyType.getText().trim();
                 String id = txfId.getText().trim();
                 Double waterVolume = Double.parseDouble(txfWaterVolume.getText().trim());
                 Double totalVolume = Double.parseDouble(txfTotalVolume.getText().trim());
                 Double alcPercentage = Double.parseDouble(txfAlcPercentage.getText().trim());
-                Boolean caskStrength = cbxCaskStrength.getValue();
+                Boolean caskStrength = cbxCaskStrength.isSelected();
                 LocalDate tapped = dpTapped.getValue();
 
                // Controller.createWhiskyBatch(waterVolume, caskStrength, alcPercentage, whiskyType, tapped, )
