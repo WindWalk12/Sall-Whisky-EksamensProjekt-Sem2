@@ -1,6 +1,10 @@
 package gui;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,7 +25,22 @@ public class ViewHistoryWindow extends Stage {
         this.setScene(scene);
     }
 
+    private TextArea txaHistory;
+
+    private Label lblHistory;
+
+    private Button btnCopyHistory, btnCancel;
+
     private void initContent(GridPane pane) {
+        pane.setPadding(new Insets(20));
+        pane.setHgap(20);
+        pane.setVgap(10);
+        pane.setGridLinesVisible(false);
+
+        // Textarea and label
+
+        // Buttons
+
 
     }
 

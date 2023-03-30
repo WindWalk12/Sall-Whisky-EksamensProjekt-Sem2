@@ -4,10 +4,7 @@ import application.controller.Controller;
 import application.model.WhiskyBatch;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
@@ -15,7 +12,9 @@ public class WhiskyPane extends GridPane {
 
     private TableView<WhiskyBatch> tvwWhisky = new TableView<>();
 
-    private Button btnCreateWhiskyBatch, btnViewHistory;
+    private Alert alert;
+
+    private Button btnCreateWhiskyBatch, btnViewHistory, btnFillBottle;
 
     public WhiskyPane() {
         this.setPadding(new Insets(20));
@@ -56,6 +55,12 @@ public class WhiskyPane extends GridPane {
         btnViewHistory.disableProperty().bind(Bindings.isNull(tvwWhisky.getSelectionModel().selectedItemProperty()));
         btnViewHistory.setMaxWidth(Double.MAX_VALUE);
 
+        btnFillBottle = new Button("Fyld på flaske");
+        this.add(btnFillBottle, 1, 3);
+        btnFillBottle.setOnAction(event -> this.fillBottleAction());
+        btnFillBottle.disableProperty().bind(Bindings.isNull(tvwWhisky.getSelectionModel().selectedItemProperty()));
+        btnFillBottle.setMaxWidth(Double.MAX_VALUE);
+
     }
 
     // -------------------------------------------------------------------------
@@ -73,6 +78,14 @@ public class WhiskyPane extends GridPane {
     private void viewHistoryAction() {
         ViewHistoryWindow dia = new ViewHistoryWindow("Historik");
         dia.showAndWait();
+        updateList();
+    }
+
+    private void fillBottleAction() {
+        Controller.createWhiskyBottles(tvwWhisky.getSelectionModel().getSelectedItem());
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Whisky er fyldt på flasker");
+        alert.showAndWait();
         updateList();
     }
 }
