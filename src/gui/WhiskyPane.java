@@ -95,7 +95,7 @@ public class WhiskyPane extends GridPane {
             updateList();
         } else {
             alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Der er allerede fyldt whisky flasker");
+            alert.setContentText("Der er allerede fyldt på flasker");
             alert.showAndWait();
         }
     }
