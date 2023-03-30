@@ -86,12 +86,18 @@ public class WhiskyPane extends GridPane {
     }
 
     private void fillBottleAction() {
-        Controller.createWhiskyBottles(tvwWhisky.getSelectionModel().getSelectedItem());
-        int antal = (int)Math.floor(tvwWhisky.getSelectionModel().getSelectedItem().getTotalVolume()*100/70);
-        alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Whisky er fyldt på " + antal + " flasker");
-        alert.showAndWait();
-        updateList();
+        if (tvwWhisky.getSelectionModel().getSelectedItem().getWhiskyBottles().size() == 0) {
+            Controller.createWhiskyBottles(tvwWhisky.getSelectionModel().getSelectedItem());
+            int antal = (int)Math.floor(tvwWhisky.getSelectionModel().getSelectedItem().getTotalVolume()*100/70);
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Whisky er fyldt på " + antal + " flasker");
+            alert.showAndWait();
+            updateList();
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Der er allerede fyldt whisky flasker");
+            alert.showAndWait();
+        }
     }
 
     private void viewBottlesAction() {
