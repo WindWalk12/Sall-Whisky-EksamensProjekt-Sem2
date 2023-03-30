@@ -1,6 +1,8 @@
 package application.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Cask {
     private String id;
@@ -86,6 +88,16 @@ public class Cask {
                 }
             }
         }
+    }
+
+    public LocalDate getNewestDate() {
+        LocalDate newestDate = LocalDate.MIN;
+        for (Distilate d : distilates) {
+            if (newestDate.isBefore(d.getFillingDate())) {
+                newestDate = d.getFillingDate();
+            }
+        }
+        return newestDate;
     }
 
     public void setStorageRack(StorageRack storageRack) {

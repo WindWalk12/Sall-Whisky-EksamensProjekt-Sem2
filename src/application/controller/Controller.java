@@ -61,6 +61,16 @@ public class Controller {
         return emptyCasks;
     }
 
+    public static ArrayList<Cask> getThreeYearOldCasks() {
+        ArrayList<Cask> ThreeYearOldCasks = new ArrayList<>();
+        for (Cask c :Storage.getCasks()) {
+            if (c.getNewestDate().compareTo(LocalDate.now().plusYears(3)) > -1) {
+                ThreeYearOldCasks.add(c);
+            }
+        }
+        return ThreeYearOldCasks;
+    }
+
     public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
         if (distillation.getVolumen() - volume < 0) {
             throw new RuntimeException("Der er ikke nok distilation til at fylde fadet op");
@@ -162,8 +172,6 @@ public class Controller {
 
         WhiskyBatch wb1 = Controller.createWhiskyBatch(10, false, 78, "Single cask", LocalDate.now(), casks1);
         WhiskyBatch wb2 = Controller.createWhiskyBatch(0, true, 65, "Single malt", LocalDate.now(), casks2);
-
-        System.out.println(wb1.createHistoryString());
 
     }
 }

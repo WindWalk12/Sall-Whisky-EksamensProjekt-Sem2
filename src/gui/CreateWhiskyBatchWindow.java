@@ -1,6 +1,7 @@
 package gui;
 
 import application.controller.Controller;
+import application.model.Cask;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -8,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import storage.Storage;
 
 import java.time.LocalDate;
 
@@ -34,9 +36,11 @@ public class CreateWhiskyBatchWindow extends Stage {
 
     private Button btnCreateBatch, btnCancel;
 
-    private Label lblId, lblWaterVolume, lblTotalVolume, lblAlcPercentage, lblWhiskyType, lblCaskStrength, lblTapped;
+    private Label lblId, lblWaterVolume, lblTotalVolume, lblAlcPercentage, lblWhiskyType, lblCaskStrength, lblTapped, lblcask;
 
     private Label lblError = new Label();
+
+    private ComboBox<Cask> cbxCasks;
 
     private void initContent(GridPane pane) {
         pane.setPadding(new Insets(20));
@@ -82,15 +86,21 @@ public class CreateWhiskyBatchWindow extends Stage {
         dpTapped.setValue(LocalDate.now());
         pane.add(dpTapped, 1, 6);
 
+        lblcask = new Label("Cask");
+        pane.add(lblcask, 0, 7);
+        cbxCasks = new ComboBox<>();
+        pane.add(cbxCasks, 1, 7);
+        cbxCasks.getItems().setAll(Controller.getThreeYearOldCasks());
+
         // Buttons
 
         btnCreateBatch = new Button("Opret batch");
-        pane.add(btnCreateBatch, 0, 7);
+        pane.add(btnCreateBatch, 0, 8);
         btnCreateBatch.setMaxWidth(Double.MAX_VALUE);
         btnCreateBatch.setOnAction(event -> this.createBatchAction());
 
         btnCancel = new Button("Luk");
-        pane.add(btnCancel, 1, 7);
+        pane.add(btnCancel, 1, 8);
         btnCancel.setOnAction(event -> this.cancelAction());
 
     }
