@@ -12,7 +12,7 @@ public class WhiskyBatch {
     private String whiskyType;
     private LocalDate tapped;
     private static int batchCounter = 0;
-    ArrayList<Distilate> distilates = new ArrayList<>();
+    ArrayList<Distillate> distillates = new ArrayList<>();
     ArrayList<WhiskyBottle> whiskyBottles = new ArrayList<>();
 
     public WhiskyBatch(double waterVolume, boolean caskStrength, double alcPercentage, String whiskyType, LocalDate tapped, Map<Cask, Double> casks) {
@@ -37,7 +37,7 @@ public class WhiskyBatch {
 
     private void addDistilates(Map<Cask, Double> casks) {
         for (Map.Entry<Cask, Double> map : casks.entrySet()) {
-            distilates.addAll(map.getKey().getDistilates());
+            distillates.addAll(map.getKey().getDistilates());
         }
 
     }
@@ -53,7 +53,7 @@ public class WhiskyBatch {
     public String createHistoryString() {
         // Maltbacth info
         Set<Maltbatch> malthbatchInfoSet = new HashSet<>();
-        for (Distilate d : distilates) {
+        for (Distillate d : distillates) {
             malthbatchInfoSet.add(d.getDistillation().getMaltBatch());
         }
         ArrayList<Maltbatch> maltbatchInfo = new ArrayList<>(malthbatchInfoSet);
@@ -65,7 +65,7 @@ public class WhiskyBatch {
 
         // Distillation info
         Set<Distillation> distillationInfoSet = new HashSet<>();
-        for (Distilate d : distilates) {
+        for (Distillate d : distillates) {
             distillationInfoSet.add(d.getDistillation());
         }
         ArrayList<Distillation> distillationInfo = new ArrayList<>(distillationInfoSet);
@@ -75,7 +75,7 @@ public class WhiskyBatch {
 
         // Warehouse info
         Set<Warehouse> WarehouseInfoSet = new HashSet<>();
-        for (Distilate d : distilates) {
+        for (Distillate d : distillates) {
             for (Cask c : d.getCasks()) {
                 WarehouseInfoSet.add(c.getStorageRack().getWarehouse());
             }
@@ -85,14 +85,14 @@ public class WhiskyBatch {
 
         // Cask info
         Set<Cask> caskInfoSet = new HashSet<>();
-        for (Distilate d : distilates) {
+        for (Distillate d : distillates) {
             caskInfoSet.addAll(d.getCasks());
         }
         ArrayList<Cask> caskInfo = new ArrayList<>(caskInfoSet);
         String caskType = caskInfo.get(0).getCaskType();
 
         // Distilate info
-        String distilateFillingDate = String.valueOf(distilates.get(0).getFillingDate());
+        String distilateFillingDate = String.valueOf(distillates.get(0).getFillingDate());
 
         return "Whiskyen her startede som byg af sorten " + grainType + ", på den økologiske mark " + field + " hos landmanden "
                 + farmer + ".\nByggen blev høstet d. " + harvestet + " og derefter maltet d. " + maltDate +

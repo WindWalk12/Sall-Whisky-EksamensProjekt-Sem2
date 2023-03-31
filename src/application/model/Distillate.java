@@ -3,13 +3,13 @@ package application.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Distilate {
+public class Distillate {
     private final LocalDate fillingDate;
     private final Distillation distillation;
     private ArrayList<Cask> casks = new ArrayList<>();
     private double volume;
 
-    public Distilate(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
+    public Distillate(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
         this.fillingDate = fillingDate;
         this.distillation = distillation;
         this.volume = volume;

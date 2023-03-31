@@ -2,7 +2,6 @@ package application.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class Cask {
     private String id;
@@ -12,7 +11,7 @@ public class Cask {
     private double volume;
     private StorageRack storageRack;
     private static int caskCounter = 0;
-    private ArrayList<Distilate> distilates = new ArrayList<>();
+    private ArrayList<Distillate> distillates = new ArrayList<>();
     private String tbvWarehouseName = "Ikke på lager";
     private String tbvStorageRackId = "Ikke på hylde";
 
@@ -71,7 +70,7 @@ public class Cask {
 
     public double getContentVolume() {
         double currentVolume = 0.0;
-        for (Distilate d : distilates) {
+        for (Distillate d : distillates) {
             currentVolume += d.getVolume();
         }
         return currentVolume;
@@ -80,7 +79,7 @@ public class Cask {
     public void removeFromContentVolume(double amount) {
         double toBeRemoved = amount;
         if (getContentVolume() >= amount) {
-            for (Distilate d : distilates) {
+            for (Distillate d : distillates) {
                 if (toBeRemoved > 0) {
                     toBeRemoved -= d.removeFromVolume(toBeRemoved);
                 } else {
@@ -92,9 +91,9 @@ public class Cask {
 
     public LocalDate getNewestDate() {
         LocalDate newestDate = LocalDate.MAX;
-        if (distilates.size() > 0) {
+        if (distillates.size() > 0) {
             newestDate = LocalDate.MIN;
-            for (Distilate d : distilates) {
+            for (Distillate d : distillates) {
                 if (newestDate.isBefore(d.getFillingDate())) {
                     newestDate = d.getFillingDate();
                 }
@@ -111,13 +110,13 @@ public class Cask {
         }
     }
 
-    public ArrayList<Distilate> getDistilates() {
-        return new ArrayList<>(distilates);
+    public ArrayList<Distillate> getDistilates() {
+        return new ArrayList<>(distillates);
     }
 
-    public void addDistilate(Distilate distilate) {
-        if (!distilates.contains(distilate)) {
-            distilates.add(distilate);
+    public void addDistilate(Distillate distillate) {
+        if (!distillates.contains(distillate)) {
+            distillates.add(distillate);
         }
     }
 

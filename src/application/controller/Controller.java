@@ -71,7 +71,7 @@ public class Controller {
         return ThreeYearOldCasks;
     }
 
-    public static Distilate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
+    public static Distillate fillCask(LocalDate fillingDate, Distillation distillation, Cask cask, double volume) {
         if (distillation.getVolumen() - volume < 0) {
             throw new RuntimeException("Der er ikke nok distilation til at fylde fadet op");
         } else if (volume + cask.getContentVolume() > cask.getVolume()) {
