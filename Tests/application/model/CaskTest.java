@@ -7,10 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CaskTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
     void getId() {
     }
