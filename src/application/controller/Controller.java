@@ -64,7 +64,7 @@ public class Controller {
     public static ArrayList<Cask> getThreeYearOldCasks() {
         ArrayList<Cask> ThreeYearOldCasks = new ArrayList<>();
         for (Cask c :Storage.getCasks()) {
-            if (c.getNewestDate().compareTo(LocalDate.now().minusYears(3)) < -1) {
+            if (c.getNewestDate().compareTo(LocalDate.now().minusYears(3)) < -1 && c.getContentVolume() > 0) {
                 ThreeYearOldCasks.add(c);
             }
         }
@@ -117,7 +117,6 @@ public class Controller {
         for (Map.Entry<Cask, Double> map : casks.entrySet()) {
             map.getKey().removeFromContentVolume(map.getValue());
         }
-
         return whiskyBatch;
     }
 
