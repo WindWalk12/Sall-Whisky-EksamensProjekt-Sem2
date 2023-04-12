@@ -39,7 +39,7 @@ public class StorageRack {
 
     public String getKeyFromValue(Cask cask) {
         String key = "";
-        for (Map.Entry<String, Cask> map :cask.getStorageRack().getShelfs().entrySet()) {
+        for (Map.Entry<String, Cask> map :shelfs.entrySet()) {
             if (Objects.equals(cask, map.getValue())) {
                 key = map.getKey();
             }

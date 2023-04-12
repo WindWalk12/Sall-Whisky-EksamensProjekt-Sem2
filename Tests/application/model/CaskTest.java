@@ -17,9 +17,6 @@ class CaskTest {
         Maltbatch maltbatch = new Maltbatch("Engen", "Evergreen", LocalDate.of(1999, 12,02), "Lars",LocalDate.now());
         distillation = new Distillation(400, 78, LocalDate.of(2000, 01, 01), LocalDate.now(), "Maja", "", "", maltbatch, "DT1");
         cask = new Cask("Spanien", "Arehucas Rum Distillery", 500, CaskType.RUM);
-        /*Distillate distillate1 = new Distillate(LocalDate.of(2022, 01, 01), distillation, cask, 20.0);
-        Distillate distillate2 = new Distillate(LocalDate.of(2023, 01, 01), distillation, cask, 20.0);
-        Distillate distillate3 = new Distillate(LocalDate.of(2020, 01, 01), distillation, cask, 20.0);*/
     }
 
     @Test
