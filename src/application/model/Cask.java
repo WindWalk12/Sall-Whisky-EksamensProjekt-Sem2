@@ -77,14 +77,12 @@ public class Cask {
     }
 
     public void removeFromContentVolume(double amount) {
-        double toBeRemoved = amount;
-        if (getContentVolume() >= amount) {
-            for (Distillate d : distillates) {
-                if (toBeRemoved > 0) {
-                    toBeRemoved -= d.removeFromVolume(toBeRemoved);
-                } else {
-                    break;
-                }
+    double toBeRemoved = amount;
+        for (Distillate d : distillates) {
+            if (toBeRemoved > 0) {
+                toBeRemoved -= d.removeFromVolume(toBeRemoved);
+            } else {
+                break;
             }
         }
     }
