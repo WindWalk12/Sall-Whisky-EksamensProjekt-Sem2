@@ -57,7 +57,7 @@ public class MoveCaskWindow extends Stage {
 
         cbxWarehouse = new ComboBox<>();
         pane.add(cbxWarehouse, 2, 0);
-        cbxWarehouse.getItems().setAll(Storage.getWarehouses());
+        cbxWarehouse.getItems().setAll(Controller.getWarehouses());
 
         ChangeListener<Warehouse> listener = (ov, oldWarehouse, newWarehouse) -> this.selectedWarehouseChanged();
         cbxWarehouse.getSelectionModel().selectedItemProperty().addListener(listener);
